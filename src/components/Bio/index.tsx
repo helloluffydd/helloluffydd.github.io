@@ -1,6 +1,12 @@
 import * as React from 'react';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
-import { faUserCircle, faAt, faMapMarkerAlt, faLink, faAddressCard, faRss } from '@fortawesome/free-solid-svg-icons';
+import {
+  faUserCircle,
+  faAt,
+  faMapMarkerAlt,
+  faLink,
+  faAddressCard /* faRss */,
+} from '@fortawesome/free-solid-svg-icons';
 import { faFacebook, faInstagram, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 import './bio.scss';
@@ -62,9 +68,9 @@ const Bio = () => {
       )}
 
       <div className="social">
-        <a href={`${config.siteUrl}/rss`} target="_blank" rel="noopener noreferrer">
+        {/* <a href={`${config.siteUrl}/rss`} target="_blank" rel="noopener noreferrer">
           <Fa icon={faRss} className="rss" />
-        </a>
+        </a> */}
 
         {!linkedin ? null : (
           <a href={linkedin} target="_blank" rel="noopener noreferrer">

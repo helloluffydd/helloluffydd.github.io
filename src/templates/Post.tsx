@@ -27,7 +27,7 @@ import { useColorMode } from 'theme-ui';
 import { throttle } from 'lodash';
 
 import './post.scss';
-import './code-theme.scss';
+// import './code-theme.scss';
 import './md-style.scss';
 import 'katex/dist/katex.min.css';
 
@@ -366,10 +366,10 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
-        date(formatString: "MMM DD, YYYY")
+        date(formatString: "YYYY-MM-DD")
         tags
         keywords
-        update(formatString: "MMM DD, YYYY")
+        update(formatString: "YYYY-MM-DD")
       }
     }
   }
