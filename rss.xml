@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Luffy | Feed]]></title><description><![CDATA[Luffy's Development Blog]]></description><link>https://helloluffydd.github.io</link><generator>GatsbyJS</generator><lastBuildDate>Thu, 20 Jan 2022 09:09:14 GMT</lastBuildDate><item><title><![CDATA[Weird-JavaScript 01：語法解析、詞彙環境、執行脈絡]]></title><description><![CDATA[相信你看完這篇就不會想學 JavaScript 了。]]></description><link>https://helloluffydd.github.io/weird-JavaScript-01/</link><guid isPermaLink="false">https://helloluffydd.github.io/weird-JavaScript-01/</guid><pubDate>Sun, 04 Aug 2019 16:14:41 GMT</pubDate><content:encoded>&lt;p&gt;相信你看完這篇就不會想學 JavaScript 了。&lt;/p&gt;
+&lt;!-- more --&gt;
+&lt;h3 id=&quot;語法解析器（syntax-parsers）&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E8%AA%9E%E6%B3%95%E8%A7%A3%E6%9E%90%E5%99%A8%EF%BC%88syntax-parsers%EF%BC%89&quot; aria-label=&quot;語法解析器（syntax parsers） permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;語法解析器（Syntax Parsers）&lt;/h3&gt;
+&lt;p&gt;A program that &lt;strong&gt;reads your code&lt;/strong&gt; and &lt;strong&gt;determines what it does&lt;/strong&gt; and &lt;strong&gt;if its grammar is valid&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;語法解析器，或稱「編譯器／直譯器」（Compiler／Interpreter），會將我們所寫的程式碼轉換成電腦（硬體）能夠接收的指令。&lt;/p&gt;
+&lt;p&gt;在 JavaScript 中，語法解析器會一字一句的解析我們所寫的程式碼，並決定程式碼是否有效，或是語法上有沒有出錯。&lt;/p&gt;
+&lt;p&gt;例如 &lt;code class=&quot;language-text&quot;&gt;function say(){...}&lt;/code&gt; 這段程式碼，語法解析器會逐字解析為：&lt;/p&gt;
+&lt;p&gt;{% colorquote success %}
+&lt;strong&gt;f-u-n-c-t-i-o-n-空格-s-a-y-(-是否有代入參數-)-{-函式區塊內容-}&lt;/strong&gt;
+{% endcolorquote %}&lt;/p&gt;
+&lt;p&gt;語法解析器會對照該段程式碼與該程式語言所規範的語法結構： &lt;code class=&quot;language-text&quot;&gt;function 名稱(參數){函式內容}&lt;/code&gt; ，如果都沒有語法上的錯誤，即決定這段程式碼為一個有效的&lt;strong&gt;函式（function）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;如果語法有誤（拼錯、漏字、順序不對等等），即會出現常見的 &lt;code class=&quot;language-text&quot;&gt;SyntaxError&lt;/code&gt; 。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;JavaScript 不是一種程式語言嗎？為什麼還需要 Syntax Parser 去解析成電腦才懂的語言？&lt;/strong&gt;
+因為不是所有程式語言都是電腦懂的指令碼，就 JavaScript 而言，它是屬於高階程式語言（High-level language）的一種（其他如 C 、 Java 等等），需要經由編譯器（Compiler）將其原始碼轉換成電腦可以解讀、執行的低階機器語言，即目標語言（機器碼 Machine Code）。&lt;/p&gt;
+&lt;p&gt;小結：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Syntax Parsers 是一個中介轉譯器，協助我們（寫的程式碼）與電腦（韌體）溝通，&lt;/li&gt;
+&lt;li&gt;電腦（韌體）接收到的指令，其實不完全是我們寫的程式碼，而是經過 Syntax Parsers 轉譯過的指令。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 680px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8050c31a48fd4d751329694c26890e34/ddced/syntaxParser.jpg&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 44.705882352941174%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAJABQDASIAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAAAAMEBf/EABUBAQEAAAAAAAAAAAAAAAAAAAEC/9oADAMBAAIQAxAAAAGp165vPNQH/8QAGhAAAgIDAAAAAAAAAAAAAAAAAQMCEQAQEv/aAAgBAQABBQISb2SyrbeR1//EABoRAAEFAQAAAAAAAAAAAAAAAAABAhETQWH/2gAIAQMBAT8BV84WcP/EABURAQEAAAAAAAAAAAAAAAAAAAAS/9oACAECAQE/AZS//8QAGxAAAgEFAAAAAAAAAAAAAAAAAAEgITEyQYH/2gAIAQEABj8CWVzuh1bh/8QAGxAAAgIDAQAAAAAAAAAAAAAAAREhMQAQQWH/2gAIAQEAAT8hTqeMaTd5LFAScEDXev/aAAwDAQACAAMAAAAQd9//xAAYEQEBAAMAAAAAAAAAAAAAAAABABFBUf/aAAgBAwEBPxAEOlhxf//EABcRAQEBAQAAAAAAAAAAAAAAAAEAEVH/2gAIAQIBAT8QECbb7f/EAB4QAQEAAQQDAQAAAAAAAAAAAAERMQAQIWFBUXHR/9oACAEBAAE/EEsqYiwS+5jR+MRKqLfEx3pjGchiQ62z+/3b/9k=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Syntax Parsrer是我們與電腦之間的中介溝通者（圖片源自參考資料 1.）&quot;
+        title=&quot;Syntax Parsrer是我們與電腦之間的中介溝通者（圖片源自參考資料 1.）&quot;
+        src=&quot;/static/8050c31a48fd4d751329694c26890e34/7bf67/syntaxParser.jpg&quot;
+        srcset=&quot;/static/8050c31a48fd4d751329694c26890e34/651be/syntaxParser.jpg 170w,
+/static/8050c31a48fd4d751329694c26890e34/d30a3/syntaxParser.jpg 340w,
+/static/8050c31a48fd4d751329694c26890e34/7bf67/syntaxParser.jpg 680w,
+/static/8050c31a48fd4d751329694c26890e34/990cb/syntaxParser.jpg 1020w,
+/static/8050c31a48fd4d751329694c26890e34/ddced/syntaxParser.jpg 1100w&quot;
+        sizes=&quot;(max-width: 680px) 100vw, 680px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;詞彙環境（lexical-environments）&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E8%A9%9E%E5%BD%99%E7%92%B0%E5%A2%83%EF%BC%88lexical-environments%EF%BC%89&quot; aria-label=&quot;詞彙環境（lexical environments） permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;詞彙環境（Lexical Environments）&lt;/h3&gt;
+&lt;p&gt;{% colorquote info %}
+&lt;strong&gt;Where something sits physically in **the code you write&lt;/strong&gt;.
+{% endcolorquote %}&lt;/p&gt;
+&lt;p&gt;簡單來說，詞彙環境指的是&lt;strong&gt;你的（某一段） Code 寫在哪裡？附近有哪些 Code ？&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;程式碼的位置，決定了語法解析器如何解析你所寫的程式碼&lt;/strong&gt;，這在 JavaScript 中尤其重要，很多&lt;strong&gt;JavaScript 奇怪的部分&lt;/strong&gt;就是因為 lexical 的緣故，這在我們後面提到變數環境、函式作用域與範圍鏈（Scope Chain）時就能深刻體會到箇中奧妙。有時候我們寫的程式碼執行結果與期待不符，往往就是因為寫錯 &lt;strong&gt;Code 的位置（lexical）&lt;/strong&gt;。更直白地說，我們&lt;strong&gt;不夠熟悉程式語言（JavaScript）解析語法的邏輯和規範&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;譬如下面這段程式碼：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; b &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 結果會出現什麼？&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;b&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 那這個結果會出現什麼？&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// 我猜你現在心裡 OS：What the ... ?????&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;小結：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;你的（某一段） Code 寫在哪裡很重要！&lt;/li&gt;
+&lt;li&gt;你的（某一段） Code 寫在哪裡很重要！！&lt;/li&gt;
+&lt;li&gt;你的（某一段） Code 寫在哪裡很重要！！！&lt;/li&gt;
+&lt;li&gt;可以說，學習一門程式語言，最核心技術面關鍵便是&lt;strong&gt;掌握該語言的語法結構&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;執行脈絡（execution-contexts）&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%9F%B7%E8%A1%8C%E8%84%88%E7%B5%A1%EF%BC%88execution-contexts%EF%BC%89&quot; aria-label=&quot;執行脈絡（execution contexts） permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;執行脈絡（Execution Contexts）&lt;/h3&gt;
+&lt;p&gt;{% colorquote info %}
+&lt;strong&gt;A wrapper&lt;/strong&gt; to &lt;strong&gt;help&lt;/strong&gt; manage &lt;strong&gt;the code&lt;/strong&gt; that is &lt;strong&gt;running&lt;/strong&gt;.
+{% endcolorquote %}&lt;/p&gt;
+&lt;p&gt;講到脈絡（context），這個詞，&lt;del&gt;就得提到歷史社會學（Historical sociology）&lt;/del&gt;，它最常被用來代指「（一個事件的）來龍去脈」：什麼先發生？什麼接著發生？發生的時候，客觀環境是怎麼樣？諸如此類，譬如「社會脈絡」、「歷史脈絡」等詞。&lt;/p&gt;
+&lt;p&gt;用這樣的語義去思考，程式語言中的執行脈絡（又稱「執行環境」）指的是，&lt;strong&gt;正在執行的 Code 所處的脈絡（上下文）為何？前面有哪些 Code ？後面接了哪些 Code ？被什麼 Code 所包覆（wrapped）？&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;表面上，執行脈絡包含你所寫的、正在執行的程式碼，但，其實，&lt;strong&gt;它不只包含你寫的 Code&lt;/strong&gt; ，還包含處理其他事情（do other things），因為你的 Code 事實上會經過編譯器轉換，而編譯器轉換的方式不盡然只執行你寫的 Code 。（傲嬌的編譯器？）&lt;/p&gt;
+&lt;p&gt;簡單理解 JavaScript 的執行脈絡，可以舉這個例子：在函式（function）中宣告變數（Variable）。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;javascript&quot;&gt;&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;testA&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 這裡的 a 是多少？&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;testB&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; 
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;testB&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 這裡的 a 又是多少？&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; a &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;testA&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;a&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 那這裡的 a 呢？&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// 上述程式碼執行後的結果， a 值印出順序為何？&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3 id=&quot;結論&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E7%B5%90%E8%AB%96&quot; aria-label=&quot;結論 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;結論&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;語法解析器：我們所寫的 JavaScript 必須經由語法解析器轉換成電腦（韌體）理解的語言，所以，語義很重要！&lt;/li&gt;
+&lt;li&gt;詞彙環境：Code 寫的位置（語法結構）很重要！&lt;/li&gt;
+&lt;li&gt;執行脈絡：目前執行的 Code 所處的環境／上下文是什麼？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;參考資料&quot; style=&quot;position:relative;&quot;&gt;&lt;a href=&quot;#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99&quot; aria-label=&quot;參考資料 permalink&quot; class=&quot;anchor before&quot;&gt;&lt;svg aria-hidden=&quot;true&quot; focusable=&quot;false&quot; height=&quot;16&quot; version=&quot;1.1&quot; viewBox=&quot;0 0 16 16&quot; width=&quot;16&quot;&gt;&lt;path fill-rule=&quot;evenodd&quot; d=&quot;M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z&quot;&gt;&lt;/path&gt;&lt;/svg&gt;&lt;/a&gt;參考資料&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;JavaScript 全攻略：克服 JS 奇怪的部分 2-6&lt;/li&gt;
+&lt;/ol&gt;</content:encoded></item></channel></rss>

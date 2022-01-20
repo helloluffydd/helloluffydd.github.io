@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://helloluffydd.github.io/sitemap.xml
+Host: https://helloluffydd.github.io
