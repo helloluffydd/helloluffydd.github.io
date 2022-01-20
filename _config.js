@@ -1,6 +1,6 @@
 module.exports = {
   /** Site MetaData (Required all)*/
-  title: `Luffy`,                           // (* Required)
+  title: `Luffy on the Way`,                           // (* Required)
   description: `Luffy's Development Blog`,          // (* Required)
   author: `Luffy Chen`,                         // (* Required)
   language: 'zh-tw',                        // (* Required) html lang, ex. 'en' | 'en-US' | 'ko' | 'ko-KR' | ...
@@ -27,7 +27,7 @@ module.exports = {
 
   /** Post */
   enablePostOfContents: true,     // TableOfContents activation (Type of Value: Boolean. Not String)
-  disqusShortname: '',            // comments (Disqus sort-name)
+  disqusShortname: 'feiBlog',            // comments (Disqus sort-name)
   enableSocialShare: true,        // Social share icon activation (Type of Value: Boolean. Not String)
 
   /** Optional */

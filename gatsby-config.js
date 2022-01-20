@@ -43,10 +43,11 @@ const gatsbyConfig = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              maxWidth: 680,
+              maxWidth: 720,
               loading: 'lazy',
             },
           },
+          'gatsby-remark-code-titles',
           {
             resolve: `gatsby-remark-prismjs`,
             options: {
@@ -64,6 +65,7 @@ const gatsbyConfig = {
               },
             },
           },
+
           {
             resolve: 'gatsby-remark-emojis',
             options: {
