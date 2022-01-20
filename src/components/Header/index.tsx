@@ -2,7 +2,7 @@ import * as React from 'react';
 import { useEffect, useState, useCallback } from 'react';
 import { Link } from 'gatsby';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
-import { faTags, faSearch, faMoon, faSun, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faTags, faSearch, faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { useColorMode } from 'theme-ui';
 
@@ -75,7 +75,7 @@ const Header = (props: headerPropsType) => {
     }
 
     const setVisible = () => {
-      setYPos(prevYPos => {
+      setYPos((prevYPos) => {
         const currentYPos = window.pageYOffset;
 
         if (currentYPos > 0) setIsHide(prevYPos < currentYPos);
@@ -113,33 +113,27 @@ const Header = (props: headerPropsType) => {
       </div>
 
       <nav id="nav">
-        <div className="theme-toggle">
-          <div className="theme-toggle-description" style={{ display: isMobile ? 'none' : 'flex' }}>
-            <Fa
-              icon={colorMode === 'dark' ? faMoon : faSun}
-              style={{ fontSize: colorMode === 'dark' ? '1.1rem' : '1.2rem' }}
-            />
-            <Fa icon={faChevronRight} style={{ fontSize: '0.9rem' }} />
-          </div>
-
-          <Fa
-            icon={colorMode === 'dark' ? faSun : faMoon}
-            style={{ fontSize: colorMode === 'dark' ? '1.2rem' : '1.1rem' }}
-            onMouseEnter={() => {
-              const toggle: HTMLDivElement | null = document.querySelector('.theme-toggle-description');
-              if (toggle) toggle.style.opacity = '0.5';
-            }}
-            onMouseLeave={() => {
-              const toggle: HTMLDivElement | null = document.querySelector('.theme-toggle-description');
-              if (toggle) toggle.style.opacity = '0';
-            }}
-            onClick={() => {
-              toggleTheme();
-            }}
-          />
-        </div>
-
         <ul>
+          <li>
+            <div className="theme-toggle">
+              <Fa
+                icon={colorMode === 'dark' ? faSun : faMoon}
+                style={{ fontSize: colorMode === 'dark' ? '1.2rem' : '1.1rem' }}
+                onClick={() => {
+                  toggleTheme();
+                }}
+                onMouseEnter={() => {
+                  const toggle: HTMLDivElement | null = document.querySelector('.theme-toggle-description');
+                  if (toggle) toggle.style.opacity = '0.5';
+                }}
+                onMouseLeave={() => {
+                  const toggle: HTMLDivElement | null = document.querySelector('.theme-toggle-description');
+                  if (toggle) toggle.style.opacity = '0';
+                }}
+              />
+            </div>
+          </li>
+
           <li>
             <div className="tag-wrap">
               <Link to="/tags">
