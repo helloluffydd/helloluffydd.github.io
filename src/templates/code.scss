@@ -1,0 +1,47 @@
+#layout {
+  &.dark {
+    .language-text {
+      color: #fff;
+      font-family: Menlo, Monaco, 'Courier New', monospace;
+      word-spacing: normal;
+      white-space: pre;
+      word-wrap: normal;
+      line-height: 1.5;
+      background: #226699;
+      padding: 2px;
+      border: 0;
+
+      -moz-tab-size: 4;
+      -o-tab-size: 4;
+      tab-size: 4;
+
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none;
+    }
+  }
+
+  &.light {
+    .language-text {
+      color: #fff;
+      font-family: Menlo, Monaco, 'Courier New', monospace;
+      word-spacing: normal;
+      white-space: pre;
+      word-wrap: normal;
+      line-height: 1.5;
+      background: #226699;
+      padding: 3px 7px;
+      border: 0;
+
+      -moz-tab-size: 4;
+      -o-tab-size: 4;
+      tab-size: 4;
+
+      -webkit-hyphens: none;
+      -moz-hyphens: none;
+      -ms-hyphens: none;
+      hyphens: none;
+    }
+  }
+}

@@ -10,14 +10,12 @@
   }
 
   .blog-post {
-    padding: 1rem;
-
     a {
       text-decoration-line: underline;
     }
 
     .blog-post-title {
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin: 0;
       line-height: 1.5;
       word-break: keep-all;
@@ -29,7 +27,7 @@
 
     .blog-post-info {
       display: flex;
-      margin-top: 1rem;
+      margin-top: 0.5rem;
       font-size: 0.84rem;
       align-items: flex-start;
       justify-content: space-between;
@@ -100,7 +98,7 @@
     .series {
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: flex-start;
       margin-top: 2rem;
 
       .icon-wrap > svg {
@@ -110,11 +108,14 @@
       .series-head {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: flex-start;
+        margin-bottom: 5px;
 
         .head {
           font-weight: bold;
           user-select: none;
+          margin-bottom: 0;
+          margin-right: 5px;
         }
 
         .icon-wrap {
@@ -128,7 +129,7 @@
         margin: 0;
         margin-top: 0.25rem;
         flex-direction: column;
-        align-items: flex-end;
+        align-items: flex-start;
         font-size: 0.8rem;
         line-height: 1.3;
 
@@ -166,7 +167,11 @@
     }
 
     .blog-post-content {
-      margin-top: 3rem;
+      margin-top: 2rem;
+
+      & p {
+        text-align: justify;
+      }
     }
   }
 
@@ -257,4 +262,17 @@
   .comments {
     padding: 1rem;
   }
+}
+
+.gatsby-code-title {
+  margin-bottom: -0.6rem;
+  padding: 0.25em 0;
+  font-family: Consolas, 'Andale Mono WT', 'Andale Mono', 'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono',
+    'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L', Monaco, 'Courier New', Courier, monospace;
+
+  // background-color: black;
+  // color: white;
+  // z-index: 0;
+  // border-top-left-radius: 0.3em;
+  // border-top-right-radius: 0.3em;
 }
