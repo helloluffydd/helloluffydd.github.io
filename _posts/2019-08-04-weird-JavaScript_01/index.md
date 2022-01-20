@@ -1,9 +1,9 @@
 ---
-title: Weird-JavaScript 01：語法解析、詞彙環境、執行脈絡
+title: Wierd JavaScript 01：語法解析、詞彙環境、執行脈絡
 date: 2019-08-04 16:14:41
-update: 2021-01-20
 tags:
-- JavaScript 
+- JavaScript
+- Wierd JavaScript
 ---
 
 相信你看完這篇就不會想學 JavaScript 了。
@@ -12,20 +12,20 @@ tags:
 
 ### 語法解析器（Syntax Parsers）
 
-A program that **reads your code** and **determines what it does** and **if its grammar is valid**.
+> A program that **reads your code** and **determines what it does** and **if its grammar is valid**.
 
 語法解析器，或稱「編譯器／直譯器」（Compiler／Interpreter），會將我們所寫的程式碼轉換成電腦（硬體）能夠接收的指令。
 
 在 JavaScript 中，語法解析器會一字一句的解析我們所寫的程式碼，並決定程式碼是否有效，或是語法上有沒有出錯。
 
-例如 `function say(){...}` 這段程式碼，語法解析器會逐字解析為：
+例如 `function say() {...}` 這段程式碼，語法解析器會逐字解析為：
 
 {% colorquote success %}
 **f-u-n-c-t-i-o-n-空格-s-a-y-(-是否有代入參數-)-{-函式區塊內容-}** 
 {% endcolorquote %}
 
 
-語法解析器會對照該段程式碼與該程式語言所規範的語法結構： `function 名稱(參數){函式內容}` ，如果都沒有語法上的錯誤，即決定這段程式碼為一個有效的**函式（function）**。
+語法解析器會對照該段程式碼與該程式語言所規範的語法結構： `function 名稱(參數) {函式內容}` ，如果都沒有語法上的錯誤，即決定這段程式碼為一個有效的**函式（function）**。
 
 如果語法有誤（拼錯、漏字、順序不對等等），即會出現常見的 `SyntaxError` 。
 
@@ -42,16 +42,16 @@ A program that **reads your code** and **determines what it does** and **if its 
 <hr>
 
 ### 詞彙環境（Lexical Environments）
-{% colorquote info %}
-**Where something sits physically in **the code you write**.
-{% endcolorquote %}
+
+> Where something sits physically in **the code you write**.
 
 簡單來說，詞彙環境指的是**你的（某一段） Code 寫在哪裡？附近有哪些 Code ？**。
 
 **程式碼的位置，決定了語法解析器如何解析你所寫的程式碼**，這在 JavaScript 中尤其重要，很多**JavaScript 奇怪的部分**就是因為 lexical 的緣故，這在我們後面提到變數環境、函式作用域與範圍鏈（Scope Chain）時就能深刻體會到箇中奧妙。有時候我們寫的程式碼執行結果與期待不符，往往就是因為寫錯 **Code 的位置（lexical）**。更直白地說，我們**不夠熟悉程式語言（JavaScript）解析語法的邏輯和規範**。
 
 譬如下面這段程式碼：
-```javascript
+
+```javascript:title=example-file.js
 var a = 100 ; var b = 100 ;
 console.log(a++,++b) // 結果會出現什麼？
 console.log(a,b) // 那這個結果會出現什麼？
@@ -68,9 +68,8 @@ console.log(a,b) // 那這個結果會出現什麼？
 <hr>
 
 ### 執行脈絡（Execution Contexts）
-{% colorquote info %}
-**A wrapper** to **help** manage **the code** that is **running**.
-{% endcolorquote %}
+
+> **A wrapper** to **help** manage **the code** that is **running**.
 
 講到脈絡（context），這個詞，~~就得提到歷史社會學（Historical sociology）~~，它最常被用來代指「（一個事件的）來龍去脈」：什麼先發生？什麼接著發生？發生的時候，客觀環境是怎麼樣？諸如此類，譬如「社會脈絡」、「歷史脈絡」等詞。
 
