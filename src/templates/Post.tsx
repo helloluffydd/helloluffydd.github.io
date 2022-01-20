@@ -27,6 +27,7 @@ import { useColorMode } from 'theme-ui';
 import { throttle } from 'lodash';
 
 import './post.scss';
+import './code.scss';
 // import './code-theme.scss';
 import './md-style.scss';
 import 'katex/dist/katex.min.css';
@@ -49,28 +50,39 @@ interface iConfig {
   disqusShortname?: string;
 }
 
-const Post = (props: postProps) => {
+const Post = ({ data, pageContext }: postProps) => {
   const isSSR = typeof window === 'undefined';
 
-  const { data, pageContext } = props;
   const isMobile = useSelector((state: RootState) => state.isMobile);
   const [yList, setYList] = useState([] as number[]);
   const [isInsideToc, setIsInsideToc] = useState(false);
   const [commentEl, setCommentEl] = useState<JSX.Element | null>(null);
   const [colorMode] = useColorMode();
 
-  const { markdownRemark } = data;
-  const { frontmatter, html, tableOfContents, fields, excerpt } = markdownRemark;
-  const { title, date, tags, keywords } = frontmatter;
-  let update = frontmatter.update;
-  if (Number(update?.split(',')[1]) === 1) update = null;
-  const { slug } = fields;
+  const {
+    markdownRemark: {
+      frontmatter: { title, date, update, tags, keywords },
+      html,
+      tableOfContents,
+      fields: { slug },
+      excerpt,
+    },
+  } = data;
+
+  let lastUpdate = update;
+  if (Number(lastUpdate?.split('-')[1]) === 1) lastUpdate = null;
   const { series } = pageContext;
   const { enablePostOfContents, disqusShortname, enableSocialShare }: iConfig = config;
   const isTableOfContents = enablePostOfContents && tableOfContents !== '';
   const isDevelopment = process.env.NODE_ENV === 'development';
   const isDisqus: boolean = disqusShortname ? true : false;
   const isSocialShare = enableSocialShare;
+
+  const currentPostIdx = series.map((s: any) => s.slug).findIndex((s) => s === slug);
+  // console.log('series', series);
+  // console.log('slug', slug);
+  // console.log('currentPostIdx', currentPostIdx);
+  // console.log('lastUpdate', lastUpdate);
 
   const mapTags = tags.map((tag: string) => {
     return (
@@ -80,7 +92,7 @@ const Post = (props: postProps) => {
     );
   });
 
-  const mapSeries = series.map((s: any) => {
+  const mapSeries = series.slice(currentPostIdx === 0 ? 0 : currentPostIdx - 1, currentPostIdx + 2).map((s: any) => {
     return (
       <li key={`${s.slug}-series-${s.num}`} className={`series-item ${slug === s.slug ? 'current-series' : ''}`}>
         <Link to={s.slug}>
@@ -184,7 +196,7 @@ const Post = (props: postProps) => {
   "@context": "https://schema.org",
   "@type": "Article",
   "datePublished": "${moment(new Date(date)).toISOString()}",
-  ${update ? `"dateModified": "${moment(new Date(update)).toISOString()}",` : ''}
+  ${lastUpdate ? `"dateModified": "${moment(new Date(lastUpdate)).toISOString()}",` : ''}
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "${config.siteUrl}"
@@ -226,10 +238,10 @@ const Post = (props: postProps) => {
             <div className="blog-post-info">
               <div className="date-wrap">
                 <span className="write-date">{date}</span>
-                {update ? (
+                {lastUpdate ? (
                   <>
                     <span>(</span>
-                    <span className="update-date">{`Last updated: ${update}`}</span>
+                    <span className="update-date">{`Last updated: ${lastUpdate}`}</span>
                     <span>)</span>
                   </>
                 ) : null}
@@ -265,11 +277,13 @@ const Post = (props: postProps) => {
               </div>
             )}
 
+            <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: html }} />
+
             {series.length > 1 ? (
               <>
                 <div className="series">
                   <div className="series-head">
-                    <span className="head">Post Series</span>
+                    <h2 className="head">系列文章</h2>
                     <div className="icon-wrap">
                       <Fa icon={faLayerGroup} />
                     </div>
@@ -278,8 +292,6 @@ const Post = (props: postProps) => {
                 </div>
               </>
             ) : null}
-
-            <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: html }} />
           </div>
 
           {isSocialShare ? (

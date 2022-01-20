@@ -46,12 +46,16 @@ const PostList = (props: PostListProps) => {
 
   const expendPostList = useCallback((list: any) => {
     const mapToList = list.map((post: any) => {
-      const { node } = post;
-      const { excerpt, fields, frontmatter } = node;
-      const { slug } = fields;
-      const { date, title, tags } = frontmatter;
-      let update = frontmatter.update;
-      if (Number(update.split(',')[1]) === 1) update = null;
+      const {
+        node: {
+          excerpt,
+          fields: { slug },
+          frontmatter: { date, update, title, tags },
+        },
+      } = post;
+      // slug would be creaged from the file name like /weird-JavaScript-01/
+      let lastUpdate = update;
+      if (Number(lastUpdate.split('-')[1]) === 1) lastUpdate = null;
 
       const mapTag = tags.map((tag: string) => {
         if (tag === 'undefined') return;
@@ -74,9 +78,9 @@ const PostList = (props: PostListProps) => {
             <div className="info">
               <div className="date-wrap">
                 <span className="date">{date}</span>
-                {update ? <span className="update">&nbsp;{`(Updated: ${update})`}</span> : null}
+                {lastUpdate && <span className="update">&nbsp;{`(Updated: ${lastUpdate})`}</span>}
               </div>
-              {tags.length && tags[0] !== 'undefined' ? <span className="info-dot">·</span> : null}
+              {tags.length && tags[0] !== 'undefined' && <span className="info-dot">·</span>}
               <ul className="tag-list">{mapTag}</ul>
             </div>
             <Link to={slug}>
