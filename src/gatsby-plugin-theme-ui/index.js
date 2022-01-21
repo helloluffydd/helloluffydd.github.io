@@ -1,8 +1,8 @@
 export default {
   colors: {
     text: '#24292e',
-    // background: '#ffe9c9',
-    background: '#ffeed6',
+    // background: '#f1f1f1',
+    background: '#f2dec9', // ede3da, ede6de, ffeed6
     modes: {
       dark: {
         text: '#e4e4e4',

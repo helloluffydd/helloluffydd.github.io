@@ -15,7 +15,7 @@ module.exports = {
 
   /** Home > Bio information*/
   comment: '🌊 To believe, then persist it.',
-  name: 'Luffy Chen',
+  name: '',
   company: '',
   location: 'Taiwan',
   email: 'luffychen0715@gmail.com',

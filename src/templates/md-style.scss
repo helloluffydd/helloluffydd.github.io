@@ -19,22 +19,25 @@
     }
   }
   li {
-    margin-bottom: 0;
+    margin-bottom: 6px;
+
+    & > p {
+      margin-bottom: 6px;
+    }
   }
   & > ul {
     margin-bottom: 1rem;
   }
   hr {
-    margin: 1.5rem 0;
+    // margin: 1.5rem 0;
   }
   code {
-    font-family: 'Nanum Gothic Coding' !important;
+    font-family: 'FiraCode Regular' !important;
   }
   blockquote {
     font-size: 0.9rem;
     border-left: 4px solid #6a737d;
-    margin: 0;
-    margin-bottom: 1rem;
+    margin: 1.66rem 0;
     padding: 0 1rem 0 1rem;
     opacity: 0.8;
   }
