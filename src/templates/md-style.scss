@@ -5,7 +5,7 @@
   }
   h2 {
     margin-top: 3rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
   h3 {
     margin-top: 2rem;
@@ -19,18 +19,18 @@
     }
   }
   li {
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 
     & > p {
-      margin-bottom: 6px;
+      margin-bottom: 8px;
     }
   }
   & > ul {
     margin-bottom: 1rem;
   }
-  hr {
-    // margin: 1.5rem 0;
-  }
+  // hr {
+  // margin: 1.5rem 0;
+  // }
   code {
     font-family: 'FiraCode Regular' !important;
   }
@@ -40,5 +40,6 @@
     margin: 1.66rem 0;
     padding: 0 1rem 0 1rem;
     opacity: 0.8;
+    letter-spacing: 1px;
   }
 }

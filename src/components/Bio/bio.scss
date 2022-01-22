@@ -7,13 +7,13 @@
   span {
     display: block;
     margin: 0;
-    font-size: 0.9rem;
   }
 
   .bio-item {
     margin-bottom: 0.8rem;
     display: flex;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
 
     .icon-wrap {
       display: inline-flex;
@@ -44,6 +44,8 @@
 
   .comment {
     margin-bottom: 1rem;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
   }
 
   .social {

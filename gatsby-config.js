@@ -17,12 +17,12 @@ const gatsbyConfig = {
 
     `gatsby-plugin-sharp`,
 
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: googleAnalytics,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     trackingId: googleAnalytics,
+    //   },
+    // },
 
     {
       resolve: `gatsby-source-filesystem`,
@@ -45,6 +45,10 @@ const gatsbyConfig = {
             options: {
               maxWidth: 720,
               loading: 'lazy',
+              showCaptions: true,
+              markdownCaptions: ['title'],
+              backgroundColor: 'transparent',
+              srcSetBreakpoints: [720, 1180],
             },
           },
           'gatsby-remark-code-titles',
