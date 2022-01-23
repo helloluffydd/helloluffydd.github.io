@@ -7,22 +7,8 @@ import { useSelector } from 'react-redux';
 import { graphql, Link } from 'gatsby';
 import moment from 'moment';
 import { FontAwesomeIcon as Fa } from '@fortawesome/react-fontawesome';
-import { faListUl, faLayerGroup, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
+import { faListUl } from '@fortawesome/free-solid-svg-icons';
 import AdSense from 'react-adsense';
-import {
-  FacebookShareButton,
-  LinkedinShareButton,
-  TwitterShareButton,
-  RedditShareButton,
-  PocketShareButton,
-  EmailShareButton,
-  FacebookIcon,
-  TwitterIcon,
-  LinkedinIcon,
-  RedditIcon,
-  PocketIcon,
-  EmailIcon,
-} from 'react-share';
 import { useColorMode } from 'theme-ui';
 import { throttle } from 'lodash';
 
@@ -33,16 +19,24 @@ import './md-style.scss';
 import 'katex/dist/katex.min.css';
 
 import Layout from '../components/Layout';
+import SocialShare from '../components/SocialShare';
+import Series from '../components/Series';
 import Toc from '../components/Toc';
 import SEO from '../components/seo';
 
 import { RootState } from '../state/reducer';
 import config from '../../_config';
 
+interface SeriesInterface {
+  slug: string;
+  title: string;
+  num: number;
+}
+
 interface postProps {
   data: any;
   location: { pathname: string };
-  pageContext: { slug: string; series: any[]; lastmod: string };
+  pageContext: { slug: string; series: SeriesInterface[]; lastmod: string };
 }
 
 interface iConfig {
@@ -53,8 +47,8 @@ interface iConfig {
 
 const Post = ({ data, location, pageContext }: postProps) => {
   const isSSR = typeof window === 'undefined';
-
   const isMobile = useSelector((state: RootState) => state.isMobile);
+
   const [yList, setYList] = useState([] as number[]);
   const [isInsideToc, setIsInsideToc] = useState(false);
   const [commentEl, setCommentEl] = useState<JSX.Element | null>(null);
@@ -62,19 +56,20 @@ const Post = ({ data, location, pageContext }: postProps) => {
 
   const { markdownRemark } = data;
   const { frontmatter, html, tableOfContents, fields, excerpt } = markdownRemark;
-  const { title, date, update, tags, keywords, featuredImage } = frontmatter;
+  const { title, date, update, tags, featuredImage } = frontmatter;
   const { slug } = fields;
   const { series } = pageContext;
-
-  let lastUpdate = update;
-  if (Number(lastUpdate?.split('-')[1]) === 1) lastUpdate = null;
   const { enablePostOfContents, disqusShortname, enableSocialShare }: iConfig = config;
+
+  const lastUpdate = update === '0001-01-01' ? null : update;
   const isTableOfContents = enablePostOfContents && tableOfContents !== '';
   const isDevelopment = process.env.NODE_ENV === 'development';
   const isDisqus: boolean = disqusShortname ? true : false;
   const isSocialShare = enableSocialShare;
 
   const currentPostIdx = series.map((s: any) => s.slug).findIndex((s) => s === slug);
+  const mapSeries = series.slice(currentPostIdx === 0 ? 0 : currentPostIdx - 1, currentPostIdx + 2);
+  const seriesTitle = series[0]['title'].split('-')[0].trim();
 
   const mapTags = tags.map((tag: string) => {
     return (
@@ -83,24 +78,6 @@ const Post = ({ data, location, pageContext }: postProps) => {
       </li>
     );
   });
-
-  const mapSeries = series.slice(currentPostIdx === 0 ? 0 : currentPostIdx - 1, currentPostIdx + 2).map((s: any) => {
-    return (
-      <li key={`${s.slug}-series-${s.num}`} className={`series-item ${slug === s.slug ? 'current-series' : ''}`}>
-        <Link to={s.slug}>
-          <span>{s.title}</span>
-          <div className="icon-wrap">{slug === s.slug ? <Fa icon={faAngleLeft} /> : null}</div>
-        </Link>
-      </li>
-    );
-  });
-
-  const metaKeywords = useCallback((keywordList: string[], tagList: string[]) => {
-    const resultKeywords = new Set();
-    for (const v of [...keywordList, ...tagList]) resultKeywords.add(v);
-
-    return Array.from(resultKeywords) as string[];
-  }, []);
 
   const renderComment = () => {
     const Comment = React.lazy(() => import('../components/Comment'));
@@ -220,13 +197,7 @@ const Post = ({ data, location, pageContext }: postProps) => {
         </script>
       </Helmet>
 
-      <SEO
-        title={title}
-        description={excerpt}
-        pathname={location.pathname}
-        imageUrl={featuredImage?.publicURL}
-        keywords={metaKeywords(keywords, tags)}
-      />
+      <SEO title={title} description={excerpt} pathname={location.pathname} imageUrl={featuredImage?.publicURL} />
 
       <Layout>
         <div className="blog-post-container">
@@ -236,23 +207,23 @@ const Post = ({ data, location, pageContext }: postProps) => {
             <div className="blog-post-info">
               <div className="date-wrap">
                 <span className="write-date">{date}</span>
-                {lastUpdate ? (
+                {lastUpdate && (
                   <>
                     <span>(</span>
                     <span className="update-date">{`Last updated: ${lastUpdate}`}</span>
                     <span>)</span>
                   </>
-                ) : null}
+                )}
               </div>
 
-              {tags.length && tags[0] !== 'undefined' ? (
+              {tags.length > 0 && (
                 <>
                   <span className="dot">·</span>
                   <ul className="blog-post-tag-list">{mapTags}</ul>
                 </>
-              ) : null}
+              )}
 
-              {!isTableOfContents ? null : (
+              {isTableOfContents && (
                 <div className="blog-post-inside-toc">
                   <div
                     className="toc-button"
@@ -269,7 +240,7 @@ const Post = ({ data, location, pageContext }: postProps) => {
               )}
             </div>
 
-            {!isTableOfContents ? null : (
+            {isTableOfContents && (
               <div className="inside-toc-wrap" style={{ display: isInsideToc ? 'flex' : 'none' }}>
                 <Toc isOutside={false} toc={tableOfContents} />
               </div>
@@ -277,57 +248,10 @@ const Post = ({ data, location, pageContext }: postProps) => {
 
             <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: html }} />
 
-            {series.length > 1 ? (
-              <>
-                <div className="series">
-                  <div className="series-head">
-                    <h2 className="head">系列文章</h2>
-                    <div className="icon-wrap">
-                      <Fa icon={faLayerGroup} />
-                    </div>
-                  </div>
-                  <ul className="series-list">{mapSeries}</ul>
-                </div>
-              </>
-            ) : null}
+            {series.length > 0 && <Series seriesTitle={seriesTitle} series={mapSeries} currentSlug={slug} />}
           </div>
 
-          {isSocialShare ? (
-            <div className="social-share">
-              <ul>
-                <li className="social-share-item email">
-                  <EmailShareButton url={config.siteUrl + slug}>
-                    <EmailIcon size={24} round={true} />
-                  </EmailShareButton>
-                </li>
-                <li className="social-share-item facebook">
-                  <FacebookShareButton url={config.siteUrl + slug}>
-                    <FacebookIcon size={24} round={true} />
-                  </FacebookShareButton>
-                </li>
-                <li className="social-share-item twitter">
-                  <TwitterShareButton url={config.siteUrl + slug}>
-                    <TwitterIcon size={24} round={true} />
-                  </TwitterShareButton>
-                </li>
-                <li className="social-share-item linkedin">
-                  <LinkedinShareButton url={config.siteUrl + slug}>
-                    <LinkedinIcon size={24} round={true} />
-                  </LinkedinShareButton>
-                </li>
-                <li className="social-share-item reddit">
-                  <RedditShareButton url={config.siteUrl + slug}>
-                    <RedditIcon size={24} round={true} />
-                  </RedditShareButton>
-                </li>
-                <li className="social-share-item pocket">
-                  <PocketShareButton url={config.siteUrl + slug}>
-                    <PocketIcon size={24} round={true} />
-                  </PocketShareButton>
-                </li>
-              </ul>
-            </div>
-          ) : null}
+          {isSocialShare && <SocialShare slug={slug} />}
 
           {isDevelopment ? (
             <>
@@ -335,12 +259,12 @@ const Post = ({ data, location, pageContext }: postProps) => {
                 <span>Ads</span>
                 <span>displayed when you deploy</span>
               </aside>
-              {isDisqus ? (
+              {isDisqus && (
                 <div className="comments comments-dev">
                   <span>Comments</span>
                   <span>displayed when you deploy</span>
                 </div>
-              ) : null}
+              )}
             </>
           ) : (
             <>
@@ -359,7 +283,7 @@ const Post = ({ data, location, pageContext }: postProps) => {
           )}
         </div>
 
-        {!isTableOfContents ? null : <Toc isOutside={true} toc={tableOfContents} />}
+        {isTableOfContents && <Toc isOutside={true} toc={tableOfContents} />}
       </Layout>
     </>
   );

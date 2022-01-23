@@ -1,0 +1,55 @@
+.social-share {
+  display: flex;
+  margin-top: 2rem;
+  flex-direction: column;
+  align-items: center;
+
+  ul {
+    display: flex;
+    margin: 0;
+
+    li.social-share-item {
+      margin: 0;
+      list-style: none;
+      margin: 0 0.25rem;
+
+      circle {
+        fill: #6a737d;
+        transition: fill 0.3s;
+      }
+
+      &:hover {
+        &.email {
+          circle {
+            fill: #b8b8b8;
+          }
+        }
+        &.facebook {
+          circle {
+            fill: #3b5998;
+          }
+        }
+        &.twitter {
+          circle {
+            fill: #00aced;
+          }
+        }
+        &.linkedin {
+          circle {
+            fill: #007fb1;
+          }
+        }
+        &.reddit {
+          circle {
+            fill: #5f99cf;
+          }
+        }
+        &.pocket {
+          circle {
+            fill: #ef3f56;
+          }
+        }
+      }
+    }
+  }
+}
