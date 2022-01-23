@@ -41,6 +41,7 @@ import config from '../../_config';
 
 interface postProps {
   data: any;
+  location: { pathname: string };
   pageContext: { slug: string; series: any[]; lastmod: string };
 }
 
@@ -50,7 +51,7 @@ interface iConfig {
   disqusShortname?: string;
 }
 
-const Post = ({ data, pageContext }: postProps) => {
+const Post = ({ data, location, pageContext }: postProps) => {
   const isSSR = typeof window === 'undefined';
 
   const isMobile = useSelector((state: RootState) => state.isMobile);
@@ -59,19 +60,14 @@ const Post = ({ data, pageContext }: postProps) => {
   const [commentEl, setCommentEl] = useState<JSX.Element | null>(null);
   const [colorMode] = useColorMode();
 
-  const {
-    markdownRemark: {
-      frontmatter: { title, date, update, tags, keywords },
-      html,
-      tableOfContents,
-      fields: { slug },
-      excerpt,
-    },
-  } = data;
+  const { markdownRemark } = data;
+  const { frontmatter, html, tableOfContents, fields, excerpt } = markdownRemark;
+  const { title, date, update, tags, keywords, featuredImage } = frontmatter;
+  const { slug } = fields;
+  const { series } = pageContext;
 
   let lastUpdate = update;
   if (Number(lastUpdate?.split('-')[1]) === 1) lastUpdate = null;
-  const { series } = pageContext;
   const { enablePostOfContents, disqusShortname, enableSocialShare }: iConfig = config;
   const isTableOfContents = enablePostOfContents && tableOfContents !== '';
   const isDevelopment = process.env.NODE_ENV === 'development';
@@ -79,10 +75,6 @@ const Post = ({ data, pageContext }: postProps) => {
   const isSocialShare = enableSocialShare;
 
   const currentPostIdx = series.map((s: any) => s.slug).findIndex((s) => s === slug);
-  // console.log('series', series);
-  // console.log('slug', slug);
-  // console.log('currentPostIdx', currentPostIdx);
-  // console.log('lastUpdate', lastUpdate);
 
   const mapTags = tags.map((tag: string) => {
     return (
@@ -228,7 +220,13 @@ const Post = ({ data, pageContext }: postProps) => {
         </script>
       </Helmet>
 
-      <SEO title={title} description={excerpt} keywords={metaKeywords(keywords, tags)} />
+      <SEO
+        title={title}
+        description={excerpt}
+        pathname={location.pathname}
+        imageUrl={featuredImage?.publicURL}
+        keywords={metaKeywords(keywords, tags)}
+      />
 
       <Layout>
         <div className="blog-post-container">
@@ -368,7 +366,7 @@ const Post = ({ data, pageContext }: postProps) => {
 };
 
 export const pageQuery = graphql`
-  query($slug: String) {
+  query ($slug: String) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       excerpt(truncate: true, format: PLAIN)
@@ -379,9 +377,12 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "YYYY-MM-DD")
+        update(formatString: "YYYY-MM-DD")
         tags
         keywords
-        update(formatString: "YYYY-MM-DD")
+        featuredImage {
+          publicURL
+        }
       }
     }
   }

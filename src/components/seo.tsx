@@ -1,82 +1,88 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import * as React from 'react';
 import { Helmet } from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
-
+import { title as defaultTitle, description as defaultDescription, author, language, siteUrl } from '../../_config';
 interface SEOPropsType {
-  description?: string;
-  lang?: string;
-  meta?: any[];
   title?: string;
+  description?: string;
+  pathname?: string;
+  imageUrl?: string;
+  type?: string;
+  meta?: any[];
   keywords?: string[];
 }
 
-const SEO = (props: SEOPropsType) => {
-  const { description, lang, meta, title, keywords } = props;
+const SEO = ({
+  title = defaultTitle,
+  description = defaultDescription,
+  pathname = '',
+  imageUrl = '/og-default.png',
+  type = 'website',
+  keywords = [],
+  meta = [],
+}: SEOPropsType) => {
+  const metaTitle = defaultTitle === title ? defaultTitle : `${title} | ${defaultTitle}`;
+  const url = `${siteUrl}${pathname}`;
 
-  const { site } = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            title
-            description
-            author
-            language
-          }
-        }
-      }
-    `
-  );
+  const metaOg = [
+    {
+      property: `og:title`,
+      content: metaTitle,
+    },
+    {
+      property: `og:description`,
+      content: description,
+    },
+    {
+      property: 'og:url',
+      content: url,
+    },
+    {
+      property: 'og:image',
+      content: imageUrl,
+    },
+    {
+      property: `og:type`,
+      content: type,
+    },
+  ];
 
-  const metaDescription = description ?? site.siteMetadata.description;
-  const metaTtitle = site.siteMetadata.title;
+  const metaTwitter = [
+    {
+      name: `twitter:card`,
+      content: `summary`,
+    },
+    {
+      name: `twitter:creator`,
+      content: author,
+    },
+    {
+      name: `twitter:title`,
+      content: metaTitle,
+    },
+    {
+      name: `twitter:description`,
+      content: description,
+    },
+  ];
 
   return (
     <Helmet
       htmlAttributes={{
-        lang: site.siteMetadata.language ?? lang,
+        lang: language,
       }}
-      title={title}
-      titleTemplate={title === metaTtitle ? metaTtitle : `%s | ${metaTtitle}`}
+      title={metaTitle}
       meta={[
         {
           name: `description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:title`,
-          content: title,
-        },
-        {
-          property: `og:description`,
-          content: metaDescription,
-        },
-        {
-          property: `og:type`,
-          content: `website`,
-        },
-        {
-          name: `twitter:card`,
-          content: `summary`,
-        },
-        {
-          name: `twitter:creator`,
-          content: site.siteMetadata.author,
-        },
-        {
-          name: `twitter:title`,
-          content: title,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
+          content: description,
         },
         {
           name: `keywords`,
-          content: keywords,
+          content: keywords.join(','),
         },
+        ...metaOg,
+        ...metaTwitter,
       ].concat(meta ?? [])}
     />
   );
