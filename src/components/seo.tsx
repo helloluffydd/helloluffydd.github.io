@@ -9,7 +9,6 @@ interface SEOPropsType {
   imageUrl?: string;
   type?: string;
   meta?: any[];
-  keywords?: string[];
 }
 
 const SEO = ({
@@ -18,7 +17,6 @@ const SEO = ({
   pathname = '',
   imageUrl = '/og-default.png',
   type = 'website',
-  keywords = [],
   meta = [],
 }: SEOPropsType) => {
   const metaTitle = defaultTitle === title ? defaultTitle : `${title} | ${defaultTitle}`;
@@ -76,10 +74,6 @@ const SEO = ({
         {
           name: `description`,
           content: description,
-        },
-        {
-          name: `keywords`,
-          content: keywords.join(','),
         },
         ...metaOg,
         ...metaTwitter,
