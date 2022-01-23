@@ -62,7 +62,16 @@
 }
 
 .toc.inside {
+  max-width: 80%;
+  min-width: 80%;
+  margin-top: 1rem;
+
+  ul {
+    margin: 0;
+  }
+
   a {
+    max-width: initial;
     text-decoration: none;
   }
 }

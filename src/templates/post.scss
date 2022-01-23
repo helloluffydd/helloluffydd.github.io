@@ -3,6 +3,10 @@
 .blog-post-container {
   padding-bottom: 2rem;
 
+  @media screen and (max-width: $break-s) {
+    margin: 1rem 0.8rem;
+  }
+
   & > div,
   .ad {
     max-width: 720px;
@@ -81,6 +85,7 @@
 
         @media screen and (max-width: $break-toc) {
           display: inline-block;
+          // display: none;
         }
 
         .toc-button {
@@ -165,13 +170,13 @@
 
     .inside-toc-wrap {
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
 
     .blog-post-content {
       margin-top: 2rem;
 
-      & > p {
+      & p {
         text-align: justify;
         line-height: 1.75;
         letter-spacing: 1px;
@@ -189,7 +194,10 @@
         font-size: 0.84rem;
         opacity: 0.7;
         margin-top: 0.5rem;
-        text-align: center;
+
+        & p {
+          text-align: center;
+        }
       }
     }
   }
