@@ -1,7 +1,7 @@
 module.exports = {
   /** Site MetaData (Required all)*/
   title: `Luffy on the Way`,                           // (* Required)
-  description: `Luffy's Development Blog`,          // (* Required)
+  description: `Write down the meaningful scenery on the way`,          // (* Required)
   author: `Luffy Chen`,                         // (* Required)
   language: 'zh-tw',                        // (* Required) html lang, ex. 'en' | 'en-US' | 'ko' | 'ko-KR' | ...
   siteUrl: 'https://helloluffydd.github.io',                      // (* Required)
@@ -27,11 +27,11 @@ module.exports = {
 
   /** Post */
   enablePostOfContents: true,     // TableOfContents activation (Type of Value: Boolean. Not String)
-  disqusShortname: 'feiBlog',            // comments (Disqus sort-name)
+  disqusShortname: 'luffyontheway',            // comments (Disqus sort-name)
   enableSocialShare: true,        // Social share icon activation (Type of Value: Boolean. Not String)
 
   /** Optional */
-  googleAnalytics: '',     // Google Analytics TrackingID. ex.'UA-123456789-0'
+  googleAnalytics: 'UA-217899367-1',     // Google Analytics TrackingID. ex.'UA-123456789-0'
   googleSearchConsole: '', // content value in HTML tag of google search console ownership verification. ex.'w-K42k14_I4ApiQKuVPbCRVV-GxlrqWxYoqO94KMbKo'
   googleAdsenseSlot: '',   // Google Adsense Slot. ex.'5214956675'
   googleAdsenseClient: '', // Google Adsense Client. ex.'ca-pub-5001380215831339'

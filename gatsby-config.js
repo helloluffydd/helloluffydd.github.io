@@ -17,12 +17,12 @@ const gatsbyConfig = {
 
     `gatsby-plugin-sharp`,
 
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: googleAnalytics,
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: googleAnalytics,
+      },
+    },
 
     {
       resolve: `gatsby-source-filesystem`,
@@ -120,13 +120,10 @@ const gatsbyConfig = {
         description: description,
         start_url: `/`,
         background_color: `#fff`,
-        theme_color: `#6a737d`,
-        theme_color_in_head: false,
         lang: language,
         display: `standalone`,
         icon: 'src/images/icon.png',
         legacy: false,
-        include_favicon: false,
         crossOrigin: `use-credentials`,
       },
     },
