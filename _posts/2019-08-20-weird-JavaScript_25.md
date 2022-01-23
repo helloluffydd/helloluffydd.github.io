@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 25：重載函式
+title: Wierd JavaScript - 25：重載函式
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-08-20 13:31:44
 ---
@@ -11,7 +10,8 @@ date: 2019-08-20 13:31:44
 <!-- more -->
 
 
-### 重載函式（Function Overloading）
+## 重載函式（Function Overloading）
+---
 
 重載函式的意思是，**讓相同的函式擁有不同數量的參數**。
 
@@ -43,13 +43,15 @@ greetTaipei('Fei', 23) ;
 greetTokyo('Bai', 28) ;
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 在 JavaScript 中，函式屬於特別的函式物件，並不支援重載函式的功能。
 * 在 JavaScript 中，由於一級函式的特性，我們可以利用預設值或包裝函式的方式，達到重載函式的目的。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-40
 
 

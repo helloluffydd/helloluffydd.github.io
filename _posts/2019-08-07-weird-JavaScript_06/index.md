@@ -1,8 +1,8 @@
 ---
-title: Wierd JavaScript 06：呼叫函式、執行堆疊
+title: Wierd JavaScript - 06：呼叫函式、執行堆疊
 date: 2019-08-07 20:32:50
+featuredImage: executionStacks.JPG
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -10,11 +10,12 @@ tags:
 
 <!-- more -->
 
-### 呼叫（Invocation）
+## 呼叫（Invocation）
+---
 
-{% colorquote info %}
-Running a function
-{% endcolorquote %}
+
+> Running a function
+
 
 
 在 JS 中，我們以 `函式名稱` 加上一對 `()` ，來呼叫（Invoke）函式，也就是**執行**該函式的意思。
@@ -43,9 +44,10 @@ a() ; // 建立 function a 的執行環境，執行 function a 。
 
 // 消滅 Global Execution Context
 ```
-<hr>
 
-###  執行堆疊（Execution Stacks）
+
+##  執行堆疊（Execution Stacks）
+---
 
 從上面的程式碼範例，我們可以歸納出 JS 建立執行環境的流程（順序）大致如下：
 
@@ -59,9 +61,9 @@ a() ; // 建立 function a 的執行環境，執行 function a 。
 
 反過來看，從上面的程式碼範例，我們同樣可以歸納出 JS 消滅執行環境的流程（順序）：
 
-{% colorquote info %}
-**function b** Execution Context → **function a** Execution Context → **Global** Execution Context  
-{% endcolorquote %}
+
+> **function b** Execution Context → **function a** Execution Context → **Global** Execution Context  
+
 
 
 當一個個事件（函式）完成後，JS 消滅執行環境的順序，也會一層一層往下移除，直到執行堆疊為空。
@@ -70,7 +72,7 @@ a() ; // 建立 function a 的執行環境，執行 function a 。
 
 {% colorquote success %}
 對，檢視事件佇列是否有待回呼事件，若有就依序執行。
-{% endcolorquote %}
+
 
 回到執行堆疊本身，我認為它是用來幫助我們理解 **JS 引擎執行函式順序**的概念，也就是說，它並不是真的存在於 JS 裡的一個系統，也不是一個範圍，只是我們想像出來的概念而已。
 
@@ -78,15 +80,17 @@ a() ; // 建立 function a 的執行環境，執行 function a 。
 
 這段只是我的小MurMur，往後還是會以執行堆疊來描述 JS 執行函式順序的概念。
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 在 JavaScript 中，呼叫函式等於執行函式。
 * 每呼叫一個函式，JS 會即刻建立屬於該函式的執行環境，並執行該函式。
 * 執行堆疊的意思是， JS 所建立的執行環境會一層一層往上堆疊，堆在最上方的執行環境，就是正在執行的函式。
 * 執行堆疊的概念用來幫助我們瞭解 JS 引擎執行函式的順序。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 2-14
 
 

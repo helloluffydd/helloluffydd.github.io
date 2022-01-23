@@ -1,8 +1,7 @@
 ---
-title: Wierd JavaScript 11：運算子
+title: Wierd JavaScript - 11：運算子
 date: 2019-08-11 15:28:33
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -10,12 +9,13 @@ tags:
 
 <!-- more -->
 
-### 運算子（Operators）
+## 運算子（Operators）
+---
 
-{% colorquote info %}
-**A special function** that is syntactically (written) differently.
+
+> **A special function** that is syntactically (written) differently.
 Generally operators take two parameters and return one result.
-{% endcolorquote %}
+
 
 如同其他程式語言，在 JavaScript 中，運算子是**一種特殊的函式**，透過特殊符號來描述，且往往**需要至少兩個以上的參數（Parameters）**進行運算，以回傳（return）一個運算的結果。
 
@@ -64,7 +64,7 @@ JavaScript 包含以下幾種功能的運算子：
 
 這裡我想簡單介紹幾種常見常用的運算子。
 
-#### 算術運算子（Arithmetic operators）
+### 算術運算子（Arithmetic operators）
 
 算術運算子包括基本的數學運算方法，必須掌握的算術運算子如下：
 
@@ -88,7 +88,7 @@ console.log(++100) ; // 101
 console.log(100++) ; // 100
 ```
 
-#### 賦值運算子（Assignment operators）
+### 賦值運算子（Assignment operators）
 
 賦值運算子是**將右方的參數賦予給左方**，這個方向性很重要！
 
@@ -107,7 +107,7 @@ var l -= 200 ; // 等同於　l = l - 200
 // 依此類推... 
 ```
 
-#### 比較運算子（Comparison operators）
+### 比較運算子（Comparison operators）
 
 比較運算子會**由左至右**依序比較傳入的參數，並根據結果回傳布林值： `true` 或 `false`。
 
@@ -124,7 +124,7 @@ console.log(55 === '55') ; // false
 
 實務上，我們會**使用 `===` 來進行判斷**，以避免 JS 偷偷幫我們強制型轉而產生紕漏。
 
-#### 邏輯運算子（Logical operators）
+### 邏輯運算子（Logical operators）
 
 邏輯運算子會**由左至右**判斷傳入的**參數**或**運算式**，並根據結果回傳一個**其中一個參數**，或**布林值**： `true` 或 `false`。
 
@@ -167,11 +167,13 @@ if(3 < 2 && 2 < 1){
 }
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 運算子是一種透過特殊符號來表述的函式。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 3-21
 2. [MDN：Expressions and operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators)

@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 28：空格
+title: Wierd JavaScript - 28：空格
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-08-21 12:52:30
 ---
@@ -10,12 +9,13 @@ date: 2019-08-21 12:52:30
 
 <!-- more -->
 
-### 空格（Whitespace）
+## 空格（Whitespace）
+---
 
-{% colorquote info %}
-**Invisible characters** that create literal 'space' in your written code.
-Carriage return, Tab and Space.
-{% endcolorquote %}
+
+> **Invisible characters** that create literal 'space' in your written code.
+> Carriage return, Tab and Space.
+
 
 
 空格在程式碼中表示**創造空間的隱形字元**，譬如 Enter 鍵、 Tab 鍵以及空白鍵。
@@ -54,13 +54,15 @@ var person = {
 }
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 空格在程式碼中表示創造空間的隱形字元，譬如 Enter 鍵、 Tab 鍵以及空白鍵。
 * 空格字元在程式中並不會被執行，善用空格可以幫助我們寫出可讀性高的程式碼。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-43
 
 

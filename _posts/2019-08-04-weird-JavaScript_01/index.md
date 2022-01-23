@@ -1,8 +1,8 @@
 ---
-title: Wierd JavaScript 01：語法解析、詞彙環境、執行脈絡
+title: Wierd JavaScript - 01：語法解析、詞彙環境、執行脈絡
 date: 2019-08-04 16:14:41
+featuredImage: syntaxParser.JPG
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -10,7 +10,9 @@ tags:
 
 <!-- more -->
 
-### 語法解析器（Syntax Parsers）
+## 語法解析器（Syntax Parsers）
+---
+
 
 > A program that **reads your code** and **determines what it does** and **if its grammar is valid**.
 
@@ -20,9 +22,7 @@ tags:
 
 例如 `function say() {...}` 這段程式碼，語法解析器會逐字解析為：
 
-{% colorquote success %}
 **f-u-n-c-t-i-o-n-空格-s-a-y-(-是否有代入參數-)-{-函式區塊內容-}** 
-{% endcolorquote %}
 
 
 語法解析器會對照該段程式碼與該程式語言所規範的語法結構： `function 名稱(參數) {函式內容}` ，如果都沒有語法上的錯誤，即決定這段程式碼為一個有效的**函式（function）**。
@@ -39,19 +39,20 @@ tags:
 
 ![Syntax Parsrer是我們與電腦之間的中介溝通者（圖片源自參考資料 1.）](./syntaxParser.JPG)
 
-<hr>
-
-### 詞彙環境（Lexical Environments）
+## 詞彙環境（Lexical Environments）
+---
 
 > Where something sits physically in **the code you write**.
 
 簡單來說，詞彙環境指的是**你的（某一段） Code 寫在哪裡？附近有哪些 Code ？**。
 
-**程式碼的位置，決定了語法解析器如何解析你所寫的程式碼**，這在 JavaScript 中尤其重要，很多**JavaScript 奇怪的部分**就是因為 lexical 的緣故，這在我們後面提到變數環境、函式作用域與範圍鏈（Scope Chain）時就能深刻體會到箇中奧妙。有時候我們寫的程式碼執行結果與期待不符，往往就是因為寫錯 **Code 的位置（lexical）**。更直白地說，我們**不夠熟悉程式語言（JavaScript）解析語法的邏輯和規範**。
+**程式碼的位置，決定了語法解析器如何解析你所寫的程式碼**，這在 JavaScript 中尤其重要，很多**JavaScript 奇怪的部分**就是因為 lexical 的緣故，這在我們後面提到變數環境、函式作用域與範圍鏈（Scope Chain）時就能深刻體會到箇中奧妙。
+
+有時候我們寫的程式碼執行結果與期待不符，往往就是因為寫錯 **Code 的位置（lexical）**。更直白地說，我們**不夠熟悉程式語言（JavaScript）解析語法的邏輯和規範**。
 
 譬如下面這段程式碼：
 
-```javascript:title=example-file.js
+```javascript:title=example.js
 var a = 100 ; var b = 100 ;
 console.log(a++,++b) // 結果會出現什麼？
 console.log(a,b) // 那這個結果會出現什麼？
@@ -65,9 +66,8 @@ console.log(a,b) // 那這個結果會出現什麼？
 * 你的（某一段） Code 寫在哪裡很重要！！！
 * 可以說，學習一門程式語言，最核心技術面關鍵便是**掌握該語言的語法結構**。
 
-<hr>
-
-### 執行脈絡（Execution Contexts）
+## 執行脈絡（Execution Contexts）
+---
 
 > **A wrapper** to **help** manage **the code** that is **running**.
 
@@ -78,7 +78,7 @@ console.log(a,b) // 那這個結果會出現什麼？
 表面上，執行脈絡包含你所寫的、正在執行的程式碼，但，其實，**它不只包含你寫的 Code** ，還包含處理其他事情（do other things），因為你的 Code 事實上會經過編譯器轉換，而編譯器轉換的方式不盡然只執行你寫的 Code 。（傲嬌的編譯器？）
 
 簡單理解 JavaScript 的執行脈絡，可以舉這個例子：在函式（function）中宣告變數（Variable）。
-```javascript
+```javascript:title=example.js
 function testA(){
   var a = 100 ;
   console.log(a) ; // 這裡的 a 是多少？
@@ -97,15 +97,15 @@ console.log(a) ; // 那這裡的 a 呢？
 // 上述程式碼執行後的結果， a 值印出順序為何？
 ```
 
-<hr>
-
-### 結論
+## 結論
+---
 
 * 語法解析器：我們所寫的 JavaScript 必須經由語法解析器轉換成電腦（韌體）理解的語言，所以，語義很重要！
 * 詞彙環境：Code 寫的位置（語法結構）很重要！
 * 執行脈絡：目前執行的 Code 所處的環境／上下文是什麼？
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 2-6
 
 

@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 30：IIFEs 與安全程式碼
+title: Wierd JavaScript - 30：IIFEs 與安全程式碼
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-08-24 10:42:20
 ---
@@ -10,7 +9,8 @@ date: 2019-08-24 10:42:20
 
 <!-- more -->
 
-### IIFEs與非同步回呼
+## IIFEs與非同步回呼
+---
 
 立即執行函式表達式（IIFEs），指的是我們利用表達式創造函式後，立即呼叫，執行運算，用完就丟。
 
@@ -32,9 +32,8 @@ for(var i = 1 ; i <= 10 ; i ++){
 
 在這樣的狀況下，JS 引擎會等到執行堆疊為空時，才執行 `setTimeout` 的回呼函式，此時 `i = 11` ，執行結果將會是：
 
-{% colorquote danger %}
-(10) 這是第 11 次執行。
-{% endcolorquote %}
+> (10) 這是第 11 次執行。
+
 
 我們可以利用 IIFEs 將 `setTimeout` 包起來，並傳入 `i` ，每跑一次迴圈，就立即執行回呼函式，達到我們預期的效果：
 
@@ -48,16 +47,16 @@ for(var i = 1 ; i <= 10 ; i ++){
 }
 ```
 
-{% colorquote success %}
-這是第 1 次執行。
-這是第 2 次執行。
-...
-這是第 10 次執行。
-{% endcolorquote %}
+> 這是第 1 次執行。
+> 這是第 2 次執行。
+> ...
+> 這是第 10 次執行。
 
-<hr>
 
-### 安全程式碼（Safe Code）
+
+
+## 安全程式碼（Safe Code）
+---
 
 IIFEs 能夠立即呼叫函式，創造新的執行環境，執行完後隨即消滅。
 
@@ -99,12 +98,14 @@ var greeting = 'Hello' ;
 console.log(greeting) ; // Hola
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * IIFEs 能夠立即呼叫函式，創造新的執行環境，執行完後隨即消滅，這樣的特性可以幫助我們避免污染全域，讓只具備功能性的變數隨著執行環境生滅，而這樣的作法就是所謂的安全程式碼。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-45
 
 

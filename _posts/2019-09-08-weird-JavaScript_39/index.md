@@ -1,8 +1,8 @@
 ---
-title: Wierd JavaScript 39：原型與原型鍊
+title: Wierd JavaScript - 39：原型與原型鍊
 date: 2019-09-08 12:43:42
+featuredImage: prototypeChain.JPG
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -12,7 +12,8 @@ tags:
 
 上篇我們說過 JavaScript 採用**原型繼承**的方式，將所有物件連結起來。所以，什麼是**原型（Prototype）**？
 
-### 原型（Prototype）
+## 原型（Prototype）
+---
 
 在 JavaScript 中，所有物件，包括函式、陣列，都具有**原型屬性 `__proto__`**，原型屬性會參考到另外一個物件，就是所謂的**原型物件**。
 
@@ -26,7 +27,7 @@ tags:
 
 ![範圍鍊（圖片源自參考資料 1.）](./prototypeChain.JPG)
 
-<br>
+
 
 假設有一個物件 `Obj` ，我想要存取屬性 `Prop3` ，但由於 `Obj` 本身並沒有這個屬性，所以 JS 引擎會幫我**向原型鍊尋找**，找到物件 `Obj` 原型的原型 `proto` 並取用到屬性 `Prop3` 。
 
@@ -36,7 +37,7 @@ JS 引擎向原型鍊尋找的過程是隱藏的，也就是說，我只要 `Obj
 
 ![範圍鍊（圖片源自參考資料 1.）](./prototypeChain2.JPG)
 
-<br>
+
 
 先前，我們也提過**範圍鍊（Scope Chain）**，指的是**函式執行**過程中，當執行環境沒有可用的變數，JS 引擎向外部詞彙環境尋找可取用的變數的過程。
 
@@ -100,12 +101,14 @@ console.log(Jane.lastname);
 
 比較 `console.log(Hai.lastname);` 與 `console.log(Jane.lastname);` 的差異，可知，如果物件本身已有可用的屬性或方法，JS 就不會向原型鍊尋找。當 JS 引擎在原型鍊中找到可用的屬性或方法，便立即停止搜尋，並回傳該值。
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 在 JavaScript 中，所有物件，包括函式、陣列，都具有原型屬性 `__proto__`，原型屬性會參考到另外一個物件。
 * 透過原型屬性串起來的物件，我們稱之為原型鍊（Prototype Chain）。
 * 原型鍊指的是物件取用過程中，物件本身沒有可用的屬性或方法，因此 JS 引擎向原型物件尋找可用的屬性或方法的過程。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 5-54

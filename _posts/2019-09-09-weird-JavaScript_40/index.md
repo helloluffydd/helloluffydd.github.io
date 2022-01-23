@@ -1,8 +1,8 @@
 ---
-title: Wierd JavaScript 40：所有東西都是物件（或純值）
+title: Wierd JavaScript - 40：所有東西都是物件（或純值）
 date: 2019-09-09 23:00:42
+featuredImage: prototypeAll.JPG
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -11,6 +11,7 @@ tags:
 <!-- more -->
 
 ## 物件、陣列與函式的原型
+---
 
 上篇我們談到，所有物件，包括物件、陣列以及函式，都具有原型。
 
@@ -34,7 +35,7 @@ console.log(c.__proto__) ;
 
 ### 物件的原型
 
-<br>
+
 
 物件 `a` 的原型是一個**物件**，該物件包含一些我們平常在物件中可以取用的方法，如下圖：
 
@@ -59,8 +60,6 @@ a.hasOwnProperty('firstname') ; // true
 
 ### 陣列物件的原型
 
-<br>
-
 我們說過，陣列也屬於物件的一種，可稱之為陣列物件。
 
 陣列 `b` 的原型是一種**陣列物件**，該物件也包含一些我們平常在陣列中可以取用的方法，如 `push()` 、 `filter()` 、 `forEach()` 等等：
@@ -83,9 +82,10 @@ a.hasOwnProperty('firstname') ; // true
 
 與陣列物件相仿，函式 `c` 的原型 `c.__proto__` 仍有 `__proto__` 這個屬性，表示 `c.__proto__` 還能向上找到它自己的原型 `c.__proto__.__proto__` ，該原型是一個**基本物件**，即原型鍊最底層的物件。
 
-<hr>
+
 
 ## 結論
+---
 
 下面這張圖檢驗了 `c.__proto__.__proto__` ，結果與 `a.__proto__` 和 `b.__proto__.__proto__` 相同 ：
 
@@ -126,9 +126,10 @@ typeof null ; // object
 
 <!-- ![物件、陣列與函式的原型鍊結構](./protoStruct.JPG) -->
 
-<hr>
+
 
 ## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 5-54
 
 

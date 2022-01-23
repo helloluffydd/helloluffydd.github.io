@@ -1,8 +1,7 @@
 ---
-title: Wierd JavaScript 10：基本型別（純值）與物件型別
+title: Wierd JavaScript - 10：基本型別（純值）與物件型別
 date: 2019-08-10 14:14:00
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -10,9 +9,10 @@ JavaScript 將資料分為基本型別與物件型別兩類，那麼 JS 內建�
 
 <!-- more -->
   
-<hr>
 
-### 資料型別（Data Type）
+
+## 資料型別（Data Type）
+---
 
 其實在 02 篇就已經大概介紹過，在 JavaScript 中，資料型別分為兩類：
 
@@ -25,13 +25,14 @@ JavaScript 將資料分為基本型別與物件型別兩類，那麼 JS 內建�
 
 這篇主要介紹這兩大資料型別。
 
-<hr>
 
-### 基本型別（Primitive）
 
-{% colorquote info %}
-A type of data that represent **a single value**.(Not an object)
-{% endcolorquote %}
+## 基本型別（Primitive）
+---
+
+
+> A type of data that represent **a single value**.(Not an object)
+
 
 基本型別，又稱**原始型別**，又細分為六種，每一種都是**值（Value）**，因此基本型別指的就是：**「純值」**。
 
@@ -39,11 +40,10 @@ A type of data that represent **a single value**.(Not an object)
 
 而這六種值分別是：
 
-#### 字串（String）
+### 字串（String）
 
-{% colorquote info %}
-a sequence of characters.
-{% endcolorquote %}
+> a sequence of characters.
+
 
 
 用**單引號（'Fei'）**或**雙引號（"Fei"）**包覆的內容就屬於字串，如 `'Fei'` 、 `'5566'` 、 `"True"` 、 `'undefined'` 等等。
@@ -62,12 +62,11 @@ console.log(noteB) ;　// SyntaxError: Unexpected identifier
 var noteB = "\"JavaScript\" is not equal to \"Java\"!!" ;
 ```
 
-#### 數字（Number）
+### 數字（Number）
 
-{% colorquote info %}
-floating point number.
-Unlike other programming languages, there's only one 'number' type.
-{% endcolorquote %}
+> floating point number.
+> Unlike other programming languages, there's only one 'number' type.
+
 
 和其他語言不同， JavaScript 的數字型別都屬於**浮點數（Float）**。
 
@@ -102,11 +101,10 @@ typeof NaN ; // Number ；NaN 屬於數字型別（Number）。
 console.log(0.1 + 0.2 === 0.3) ; // false
 ```
 
-#### 布林值（Boolean）
+### 布林值（Boolean）
 
-{% colorquote info %}
-true or false
-{% endcolorquote %}
+> true or false
+
 
 ~~斯斯有三種，但~~ Boolean 只有兩種值： `true`（是） 和 `false`（否）。
 
@@ -122,13 +120,12 @@ if(a > b){　// 55 > 66 不成立， a > b 會被轉成 false 代入 if，因此
 }
 ```
 
-在 JavaScript 中，判斷或比較的運算式能夠被隱性轉型成 Boolean ，好比上面這段程式碼中的 `` ，詳細我們不久後就會提到。
+在 JavaScript 中，判斷或比較的運算式能夠被隱性轉型成 Boolean ，詳細我們不久後就會提到。
 
-#### 空值（Null）
+### 空值（Null）
 
-{% colorquote info %}
-null represents lack of exitence.
-{% endcolorquote %}
+> null represents lack of exitence.
+
 
 Null 只有 `null` 這個值，指的是，該變數存在於 JS（記憶體） 中，**已經被宣告，可能曾經有值，但現在沒有值**。
 
@@ -142,11 +139,10 @@ console.log(num + nul) ; // 5566
 console.log(num + und) ; // NaN　ˊ<_ˋ...??????
 ```
 
-#### 未定義（Undefined）
+### 未定義（Undefined）
 
-{% colorquote info %}
-Undefined represents lack of existence.
-{% endcolorquote %}
+> Undefined represents lack of existence.
+
 
 
 Undefined 只有 `undefined` 這個值，指的是，該變數存在於 JS（記憶體） 中，**已經被宣告，但尚未被賦值**。
@@ -163,11 +159,10 @@ Undefined 只有 `undefined` 這個值，指的是，該變數存在於 JS（記
 
 總結來說，對 JS 而言， `null` 與 `undefined` 具有**值不存在**的意思，但實際上兩者在功能與運算仍有差異，不然何必無緣無故設計兩種型別呢？
 
-#### Symbol（ES6 新增的型別）
+### Symbol（ES6 新增的型別）
 
-{% colorquote info %}
-Used in ES6. We won't talk about this here...
-{% endcolorquote %}
+> Used in ES6. We won't talk about this here...
+
 
 
 ES6 後才新增的型別，因為不常見~~（我也還不會用）~~，這裡先不談。
@@ -178,9 +173,10 @@ ES6 後才新增的型別，因為不常見~~（我也還不會用）~~，這裡
 
 聽不懂？沒關係，我們會再細談的。
 
-<hr>
 
-### 物件型別（Object）
+
+## 物件型別（Object）
+---
 
 相較於基本型別有六種（純值），物件型別只有一種，就是**物件（Object）**。
 
@@ -247,9 +243,10 @@ person.say() ; // 'Welcome to my blog!!'
 
 **傳值（By Value）**和**傳參考（By Reference）**是 JavaScript 處理資料的運作邏輯，也是它偷偷不告訴你的事情之一。
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 在 JS 中，所有的值（Value）都是純值或物件。
 * JS 內建的資料型別分兩大類，分別是基本型別與物件型別。
 * 基本型別（Primitive）有六種：
@@ -263,7 +260,8 @@ person.say() ; // 'Welcome to my blog!!'
 * 物件型別包含陣列、函式等次型別，它們都屬於特殊的物件。
 * 所以，JS 內建的資料型別總共有 7 種：6 種純值 + 1 種物件。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 3-20
 2. [重新認識 JavaScript: Day 03 變數與資料型別](https://ithelp.ithome.com.tw/articles/10190873)
 3. [重新認識 JavaScript: Day 04 物件、陣列以及型別判斷](https://ithelp.ithome.com.tw/articles/10190962)

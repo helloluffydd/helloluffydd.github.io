@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 23：陣列
+title: Wierd JavaScript - 23：陣列
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-08-17 12:04:27
 ---
@@ -10,7 +9,8 @@ date: 2019-08-17 12:04:27
 
 <!-- more -->
 
-### 陣列（Array）
+## 陣列（Array）
+---
 
 陣列屬於物件型別的次型別，又稱**陣列物件**，它的內容可以是**任何東西的集合**。
 
@@ -62,12 +62,14 @@ arr.2(arr.4.mom) ; // SyntaxError: Unexpected number
 arr[2](arr[4].mom) ; // Hola! Linda
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 陣列屬於特殊的陣列物件，它可以是任何資料型別的集合。
 * 我們可以利用取用運算子 `[]` 搭配陣列索引值來取用陣列裡的資料。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-38 
 

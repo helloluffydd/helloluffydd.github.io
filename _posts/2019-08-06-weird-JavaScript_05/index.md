@@ -1,8 +1,8 @@
 ---
-title: Wierd JavaScript 05：單執行緒、同步執行、非同步回呼
+title: Wierd JavaScript - 05：單執行緒、同步執行、非同步回呼
 date: 2019-08-06 18:54:48
+featuredImage: eventQueue.JPG
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -10,19 +10,20 @@ JavaScript **本身**是一門**單執行緒**且**同步執行**的高階程式
 
 <!-- more -->
 
-### 單執行緒（Single Threaded）
-{% colorquote info %}
-**One command at a time.**
-{% endcolorquote %}
+## 單執行緒（Single Threaded）
+---
+
+> **One command at a time.**
 
 單執行緒的意思是， JavaScript 一次**只能做一件事情**（一行指令）。
 
-<hr>
 
-### 同步執行（Synchronous Execution）
-{% colorquote info %}
-**One at a time and in order.**
-{% endcolorquote %}
+
+## 同步執行（Synchronous Execution）
+---
+
+> **One at a time and in order.**
+
 
 同步執行的意思是， JavaScript 一次只能做一件事情，這件做完，才能做下一件，**按照順序一件接著一件**（逐行執行命令）。
 
@@ -30,13 +31,14 @@ JavaScript **本身**是一門**單執行緒**且**同步執行**的高階程式
 
 好，既然你誠心誠意發問了，我就...
 
-<hr>
 
-### 非同步（Asynchronous）
 
-{% colorquote info %}
+## 非同步（Asynchronous）
+---
+
+
 **More than one at a time.**
-{% endcolorquote %}
+
 
 非同步的意思是，「同時間可以做不只一件事」。
 
@@ -78,7 +80,7 @@ console.log('finished execution') ;　
 
 執行結果如下：
 
-```
+```plain
 start execution (time countdown starts)
 finished function (5 seconds passed)
 finished execution
@@ -90,7 +92,6 @@ click event !　// 你點擊網頁（觸發 click）多少次，這裡就會有�
 當我們在 JavaScript 中利用 HTTP Request 向伺服器發出一則資料請求，由於等待回覆（Response）必然耗時，所以 JS 會把這個請求（Request）暫時放進事件佇列中**等待回覆**（請求已經發出，並由 HTTP Request Methods 執行），**等到 JS 逐行跑完（全域執行環境的）指令，也就是執行堆疊（Execution Stack）為空以後**，再來處理伺服器 Response 的資料。
 
 ![JS 會優先處理腳本中的執行堆疊，最後才執行事件佇列。（圖片源自參考資料 1.）](./eventQueue.JPG)
-<center>JS 會優先處理腳本中的執行堆疊，最後才執行事件佇列。</center>
 
 我們可以把事件佇列想像成 JS 引擎的對外窗口，每當 JS 遇到需要和其他引擎合作的事件，會將這些事件依序放進事件佇列，先專心跑完全域執行環境的程式碼後，再回頭逐一執行事件佇列裡的任務。
 
@@ -108,14 +109,16 @@ click event !　// 你點擊網頁（觸發 click）多少次，這裡就會有�
 
 最後，需要特別注意的是，**JS 非同步的部分，發生在 JS 引擎之外**，也就是其他協作引擎所執行的。
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * JavaScript 本身是一門單執行緒且同步執行的高階程式語言，意思是，它一次只能做一件事情，而且必須按順序執行，執行完一件才能繼續做下一件。
 * JavaScript 能夠利用事件佇列與瀏覽器中的其他引擎互相溝通、分工合作，利用同步達到非同步的效果，使得非同步成為 JS 的特色。
 
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 2-13、2-18
 2. [先來看看瀏覽器內核長怎樣吧！](https://ithelp.ithome.com.tw/articles/10191427)
 3. [MDN：Callback function](https://developer.mozilla.org/en-US/docs/Glossary/Callback_function)

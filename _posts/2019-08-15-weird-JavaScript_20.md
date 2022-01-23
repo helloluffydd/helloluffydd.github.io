@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 20：函式陳述式與函式表達式
+title: Wierd JavaScript - 20：函式陳述式與函式表達式
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-08-15 11:24:26
 ---
@@ -10,12 +9,12 @@ date: 2019-08-15 11:24:26
 
 <!-- more -->
 
-### 表達式（Expression）
+## 表達式（Expression）
+---
 
-{% colorquote info %}
-A unit of code that **results in a value**.
-It doesn't have to save to a variable.
-{% endcolorquote  %}
+
+> A unit of code that **results in a value**.
+> It doesn't have to save to a variable.
 
 
 表達式的**執行結果會回傳一個值**，而該值不一定要賦予給任一變數。譬如運算、賦值、呼叫函式等等。
@@ -27,13 +26,13 @@ a = 55 ; // 55
 false + 100 ; // 100
 ```
 
-<hr>
 
-### 陳述式（Statement）
 
-{% colorquote info %}
-A unit of code that would not result in a value.
-{% endcolorquote  %}
+## 陳述式（Statement）
+---
+
+
+> A unit of code that would not result in a value.
 
 陳述式的執行結果不會回傳值。譬如 `var` 宣告、函式宣告、 `switch` 判斷、 `{}` 函式區塊、 `break` 等等。
 
@@ -55,9 +54,10 @@ function greet(){
 // greet() 函式物件的程式屬性： { console.log('Function declaration statement would be hoisted in JS.') }
 ```
 
-<hr>
 
-### 函式表達式（Function Expression）
+
+## 函式表達式（Function Expression）
+---
 
 既然**函式**屬於一種特殊的**函式物件**，當然能夠**被賦予給任一變數**，這樣的方式稱為函式表達式。
 
@@ -73,9 +73,10 @@ var anonymousGreet = function(){
 anonymousGreet() ; // 必須等到賦予函式物件後才能呼叫
 ```
 
-<hr>
 
-### 一級函式與函式表達
+
+## 一級函式與函式表達
+---
 
 在 JS 中，由於一級函式的特色，我們可以將一個函式物件當作另一個函式的參數，丟進函式中執行。
 
@@ -104,15 +105,17 @@ function call(a){
 }
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 表達式的執行結果會回傳一個值；陳述式的執行結果不會回傳值。
 * 函式陳述式指的是函式宣告，在全域環境中具有 Hoisting 特性，能夠在宣告之前呼叫。
 * 函式表達式指的是將一個函式（物件）賦予任一個變數。
 * 結合一級函式的特色，參考到函式物件的變數可以被當作參數丟進另一個函式中執行並回船結果。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-35
 2. [MDN：Statements and declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements)
 3. [MDN：Function expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function)

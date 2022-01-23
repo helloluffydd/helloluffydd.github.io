@@ -1,16 +1,17 @@
 ---
-title: Wierd JavaScript 19：一級函式
-tags:
-- JavaScript
-- Wierd JavaScript
+title: Wierd JavaScript - 19：一級函式
 date: 2019-08-14 14:22:00
+featuredImage: functionObject.JPG
+tags:
+- Wierd JavaScript
 ---
 
 函式就是物件，物件就是函式，就是所謂一級函式。
 
 <!-- more -->
 
-### 函式就是物件
+## 函式就是物件
+---
 
 我們之前談到資料型別時，就已經提過：在 JavaScript 中，**函式是一種特殊的物件**。
 
@@ -31,14 +32,14 @@ personSay.yell() ; // JS is Soooooo HARD!!
 
 而這樣的函式特色，在程式語言中被稱為**一級函式（First Class Functions）**。
 
-<hr>
 
-### 一級函式（First Class Functions）
 
-{% colorquote info %}
-Everything you can do with other types you can do with functions.
-Assign them to variables, pass them around, create them on the fly.
-{% endcolorquote  %}
+## 一級函式（First Class Functions）
+---
+
+
+> Everything you can do with other types you can do with functions.
+> Assign them to variables, pass them around, create them on the fly.
 
 上面這段對於一級函式的簡介意思是：任何你對其它型別做的事情，你都可以用一級函式做到。
 
@@ -50,9 +51,10 @@ Assign them to variables, pass them around, create them on the fly.
 
 雖然一級函式並非 JavaScript 獨有的特色，但因為具備這樣的特性，使得 JavaScript 成為一種**以函式為核心（Functional Programming）**的程式設計語言。
 
-<hr>
 
-### 函式物件
+
+## 函式物件
+---
 
 在 JS 中，函式屬於一種特殊的物件，又稱為**函式物件**。
 
@@ -80,12 +82,14 @@ yell() ;
 
 ![函式物件的構成：名稱屬性、程式屬性、屬性、方法（圖片源自參考資料 1.）](./functionObject.JPG)
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 在 JavaScript 中，函式是一種特殊的物件，而這樣的特色被稱為一級函式。
 * 在 JavaScript 中，函式屬於函式物件，可以擁有屬性與方法。
 * 函式物件的組成包括：名稱屬性（可以是匿名的）、程式屬性（能夠被呼叫的）、屬性、方法。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-34

@@ -1,8 +1,7 @@
 ---
-title: Wierd JavaScript 09：動態型別
+title: Wierd JavaScript - 09：動態型別
 date: 2019-08-10 13:13:52
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -10,12 +9,13 @@ tags:
 
 <!-- more -->
 
-### 動態型別（Dynamic Typing）
+## 動態型別（Dynamic Typing）
+---
 
-{% colorquote info %}
-You don't tell the JavaScript engine what type of data a variable holds. 
-It would figure it out while your code is running.  
-{% endcolorquote %}
+
+> You don't tell the JavaScript engine what type of data a variable holds. 
+> It would figure it out while your code is running.  
+
 
 
 動態型別指的是，我們不需要特別宣告**變數**的資料型別，JS 引擎執行時，會根據我們所撰寫的程式碼環境，自動判定變數的資料型別，也就是說，**變數的資料型別可以輕易改變**。
@@ -28,7 +28,7 @@ It would figure it out while your code is running.
 
 以 Java 為例，我們在宣告變數時，同時會定義該變數的資料型別，就像這樣：
 
-```java
+```javascript
 char     name   =  'Fei' ; // 定義該變數為字元（Text）
 int      age    =  23    ; // 定義該變數為整數（Integer）
 float    BMI    =  22.87 ; // 定義該變數為浮點數（Float）
@@ -37,7 +37,7 @@ boolean  isRich =  false ; // 定義該變數為布林值（Boolean）
 
 在 Java 中，不同的資料型態是不能一起運算處理的，你必須手動幫資料轉型，才能順利執行。
 
-```java
+```javascript
 char a = '5566' ;
 int  b = 520 ;
 System.out.printIn(a + b) ; // error: incompatible types: String cannot be converted to int
@@ -60,14 +60,16 @@ console.log(a + b) ; // 5566520（String） >///////<
 
 請記得！變數在 JS 中的功用，只是一個**代名詞**，代指某一個**值**或**物件**。
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 動態型別指的是，我們不需要特別宣告變數的資料型別，JS 會根據程式碼環境自動判定變數的資料型別。
 * 弱型別指的是，程式引擎（語法解析器）檢查變數型別較為寬鬆、容許資料型別之間隱性轉換。
 * 在 JavaScript 中，變數本身並沒有區分資料型別，值才有區分，分為基礎型別與物件型別兩大類，共七種值。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 3-19
 
 

@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 35：call()、apply()、bind()
+title: Wierd JavaScript - 35：call()、apply()、bind()
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-08-31 13:38:45
 ---
@@ -10,7 +9,8 @@ call() 、 apply() 、 bind() 都屬於函式的方法，可以用來改變函�
 
 <!-- more -->
 
-### call()
+## call()
+---
 
 `call()` 用來**呼叫**函式，和我們平常使用 `()` 來呼叫函式是一樣的。
 
@@ -68,9 +68,10 @@ logPerson.call(person, 'writing', 'coding') ;
 * `thisPara` ：指定 `this` 的參數（通常是一個物件）
 * `para1` 、 `para2` 執行函式的參數
 
-<hr>
 
-### apply()
+
+## apply()
+---
 
 `apply()` 和 `call()` 的功能幾乎相同，能夠**呼叫**函式，第一個參數傳入指定 `this` 代指的對象，唯一的差別在於第二個參數只能傳入**陣列**。
 
@@ -115,9 +116,10 @@ var person = {
 * `thisPara` ：指定 `this` 的參數（通常是一個物件）
 * `arrayPara`：執行函式的參數（必須為一個陣列）
 
-<hr>
 
-### bind()
+
+## bind()
+---
 
 `bind()` 不會執行函式，而是**複製（拷貝）**函式，第一個參數傳入綁定 `this` 代指的對象。 `bind()` 結果通常會賦值給另一個變數（表達式）。
 
@@ -171,13 +173,15 @@ return30() ;
 * `thisPara` ：指定 `this` 的參數（通常是一個物件）
 * `arrayPara`：綁定函式的參數（綁定後無法更改）
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * `call()` 、 `apply()` 、 `bind()` 請看各小節總結，或參考[CodePen 範例](https://codepen.io/luffy-chen/pen/yLNJgEB?editors=0011)。
 * 若不想指定 `this` 變數，可以傳入 `this` 變數本身，如 `bind()` 中 `multiply(a, b)` 一例。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-50
 2. [MDN：Function.prototype.call](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function/call)
 3. [MDN：Function.prototype.apply](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)

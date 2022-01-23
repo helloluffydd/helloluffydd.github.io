@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 27：自動插入分號
+title: Wierd JavaScript - 27：自動插入分號
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-08-21 12:10:21
 ---
@@ -10,7 +9,8 @@ JavaScript 的語法解析器會自動幫我們加上分號，這有時候可能
 
 <!-- more -->
 
-### 分號（Semicolon）
+## 分號（Semicolon）
+---
 
 先前提過， JavaScript 的語法解析器會幫助我們轉譯程式碼，在過程中也會自動幫我們處理一些事情，進而改變我們的程式碼。
 
@@ -64,12 +64,14 @@ getNam() ;
 
 此時就能如期回傳物件 `{name: 'Fei'}` 。
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 在 JavaScript 中，分號不是必要的，但仍**建議在預期的地方加上分號**，避免 JS 引擎解析語法時自動補上所導致的錯誤。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-42
 2. [Javascript 分號戰爭](https://medium.com/cypressyi-technote/javascript-%E5%88%86%E8%99%9F%E6%88%B0%E7%88%AD-4652b218bdf9)
 

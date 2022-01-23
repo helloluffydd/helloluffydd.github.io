@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 37：函式程式設計（二）
+title: Wierd JavaScript - 37：函式程式設計（二）
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-09-05 16:44:45
 ---
@@ -10,7 +9,8 @@ date: 2019-09-05 16:44:45
 
 <!-- more -->
 
-### 開源教育
+## 開源教育
+---
 
 **Underscore** 就像 jQuery 一樣，是一個知名的 JavaScript **資源庫（Library）**，內含許多處理陣列、物件以及函式的語法。
 
@@ -25,9 +25,10 @@ date: 2019-09-05 16:44:45
 
 我們可以點擊上方連結，到 Underscore 的官方網站，下載 Development（擁有註解） 的版本，並在 Visual Studio 中打開 `underscore.js` ，從中檢視原始碼撰寫的設計原理。
 
-<hr>
 
-### Underscore.js
+
+## Underscore.js
+---
 
 檢視 `underscore.js` 的原始碼，我們會發現所有程式碼都被包在一個 IIFE 裡面，保證我們載入這個 Library 後，其內容不會與我們撰寫的程式碼產生衝突。
 
@@ -59,10 +60,12 @@ console.log(arr1) ;
 console.log(arr2) ;
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 找各式各樣的 JavaScript 框架或資源庫（Library）來玩，閱讀、理解它們的原始碼，培養程式設計的經驗與感覺。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-52

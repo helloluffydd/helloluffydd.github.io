@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 34：閉包與回呼
+title: Wierd JavaScript - 34：閉包與回呼
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-08-29 10:03:03
 ---
@@ -10,7 +9,8 @@ date: 2019-08-29 10:03:03
 
 <!-- more -->
 
-### 閉包與回呼
+## 閉包與回呼
+---
 
 以 `setTimeout` 這段程式碼作為範例：
 
@@ -49,14 +49,14 @@ sayHiLater() ;
 8. 執行 `setTimeout` ，倒數 3 秒（3000 豪秒），計時開始。
 9. 3 秒後，倒數完畢，執行回呼函式 `function(){console.log(greeting)` ，印出字串 `Hi!`。
 
-<hr>
 
-### 回呼函式（Callback Function）
 
-{% colorquote warning %}
-A function you give to another function, to be run when the other function is finished.
-The function you called(invoked), 'calls back' by calling the function you gave it when finished.
-{% endcolorquote %}
+## 回呼函式（Callback Function）
+---
+
+> **A function you give to another function, to be run when the other function is finished.**
+> The function you called(invoked), 'calls back' by calling the function you gave it when finished.
+
 
 理解回呼函式，可以舉 A 函式與 B 函式來說明：我們在 A 函式中創造 B 函式，接著執行 A 函式，等到 A 函式執行結束後，才回頭呼叫 B 函式，此時 B 函式就是所謂的回呼函式。
 
@@ -99,14 +99,16 @@ tellMeWhenDone(function(){
 })
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 回呼函式，即回頭呼叫執行的函式（其所在的外部執行環境可能已經消滅）。
 * 回呼函式，也可以想成：將 B 函式當作 A 函式的參數傳入，並在 A 函式中呼叫 B 函式，則 B 函式為回呼函式。
 * 回呼函式亦指那些滿足特定條件才會被動觸發的函式。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-49
 2. [重新認識 JavaScript: Day 18 Callback Function 與 IIFE](https://ithelp.ithome.com.tw/articles/10192739)
 

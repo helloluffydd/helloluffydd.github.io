@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 36：函式程式設計（一）
+title: Wierd JavaScript - 36：函式程式設計（一）
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-09-04 23:40:04
 ---
@@ -10,7 +9,8 @@ date: 2019-09-04 23:40:04
 
 <!-- more -->
 
-### 函式程式設計（Functional Programming）
+## 函式程式設計（Functional Programming）
+---
 
 我們知道，一級函式是 JavaScript 的重點特色，讓我們能夠將函式當作參數傳入另一個函式，而這樣的特色，讓 JavaScript 得以函式為核心，去設計各式各樣的程式語法，達到不同的效果與目的，而這個思考與實作的過程就是所謂的**函式程式設計（Functional Programming）**。
 
@@ -174,13 +174,15 @@ console.log(arr2);
 
 動手寫吧！將你的任務包裝成一個一個的函式，設計屬於你的 JavaScript ！
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 函式程式設計的思維是將任務拆分、打包成一個一個的函式（與變數），透過傳入參數的方式，減少重複撰寫程式碼，提升函式的彈性與複用性。
 * 釐清創造函式與執行函式的時機，有利於函式程式設計，瞭解函式作用域、範圍鍊與閉包的原理。
 * 設計函式程式時，盡量不要改變（Mutate）原始的資料（Data），注意物件傳參考的特性，以深拷貝（請見參考資料文章）或創造新物件的方式來傳遞資料。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-51
 2. [[Javascript] 關於 JS 中的淺拷貝和深拷貝](https://larry850806.github.io/2016/09/20/shallow-vs-deep-copy/)

@@ -1,16 +1,17 @@
 ---
-title: Wierd JavaScript 33：函式工廠
-tags:
-- JavaScript
-- Wierd JavaScript
+title: Wierd JavaScript - 33：函式工廠
 date: 2019-08-27 13:27:01
+featuredImage: functionFactory.JPG
+tags:
+- Wierd JavaScript
 ---
 
 透過閉包的原理，搭建一座座函式工廠吧！
 
 <!-- more -->
 
-### 函式工廠（Function Factory）
+## 函式工廠（Function Factory）
+---
 
 現在，我們已經瞭解閉包的概念，那麼，在什麼樣的情況下，我們會使用閉包？
 
@@ -57,13 +58,15 @@ greetSpanish('Fei', 'Lu') ;
 
 ![利用函式作為工廠，依據計算或判斷創造另一個函式。（圖片源自參考資料 1.）](./functionFactory.JPG)
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 閉包的原理：利用函式執行環境，創造一個專屬的封閉空間（記憶體空間），包住可供取用的變數。
 * 函式工廠指的就是利用閉包原理，把一個函式看成一個工廠，依據計算或變數判斷創造另一個函式，回傳供我們取用。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-48
 
 

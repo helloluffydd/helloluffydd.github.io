@@ -1,16 +1,17 @@
 ---
-title: Wierd JavaScript 24：參數（parameter v.s. arguments）
-tags:
-- JavaScript
-- Wierd JavaScript
+title: Wierd JavaScript - 24：參數（parameter v.s. arguments）
 date: 2019-08-17 14:34:46
+featuredImage: argument.JPG
+tags:
+- Wierd JavaScript
 ---
 
 函式的參數（Parameter）和參數 `arguments` 有什麼關係？
 
 <!-- more -->
 
-### 參數（Parameter）
+## 參數（Parameter）
+---
 
 當我們在宣告函式時，會定義所需帶入的數值，也就是 `()` 裡面的變數，這個被丟進函數裡的數就是所謂的**參數（Parameter）**。
 
@@ -23,18 +24,17 @@ function calc(a, b){
 calc(55, 66) ; // 55 和 66 就是函式 calc 的參數
 ```
 
-### 參數（Arguments）
+## 參數（Arguments）
+---
 
 而在 JavaScript 中有一個關鍵字也叫作**參數： `arguments`**，它跟變數 `this` 一樣，在函式執行後被創造，指的是**函式執行環境裡，那些被丟進來的參數們**。
 
 ![函式呼叫後的創造階段：創造執行環境、this、arguments以及參考外部環境（圖片源自參考資料 1.）](./argument.JPG)
 
-<br>
 
-{% colorquote info %}
-The parameters you pass to a function.
-JavaScript gives you a keyword of the same name which contains them all.
-{% endcolorquote %}
+> The parameters you pass to a function.
+> JavaScript gives you a keyword of the same name which contains them all.
+
 
 
 簡單來說，`arguments` 就是**函式參數的集合**，它會以**類陣列（Array-like）**的形式存在於函式執行環境中，供我們取用。
@@ -111,12 +111,14 @@ function calc(a, b, c){
 calc(...nums) ; 
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 函式被呼叫後，JS 引擎會自動幫我們宣告一個變數 `arguments` 。
 *  `arguments` 是函式參數的集合，會以類陣列的形式存在於函式執行環境中供我們取用。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 3-39
 

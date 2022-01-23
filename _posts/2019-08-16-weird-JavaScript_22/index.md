@@ -1,16 +1,17 @@
 ---
-title: Wierd JavaScript 22：What's this ?
-tags:
-- JavaScript
-- Wierd JavaScript
+title: Wierd JavaScript - 22：What's this ?
 date: 2019-08-16 15:03:22
+featuredImage: creationPhase.JPG
+tags:
+- Wierd JavaScript
 ---
 
 你指的 this 到底是哪個 this ？
 
 <!-- more -->
 
-### 回顧函式的執行環境
+## 回顧函式的執行環境
+---
 
 經過前面一連串的講解，我們知道，當一個函式被呼叫後，JS 引擎會為該函式創造屬於它的**執行環境**。而執行環境本身就是該函式中區域變數的**變數環境**，也就是**作用域的範圍**。我們還可以依據函式所處的**詞彙環境**，判斷函式執行時，如果找不到所需的變數，JS 會參考到的**外部環境**為何。
 
@@ -33,13 +34,13 @@ console.log(window.a === this.a) ; // true
 
 So, what is "this" ?
 
-<hr>
 
-### this
 
-{% colorquote info %}
-In most cases, the value of this is determined by **how a function is called**. (MDN)
-{% endcolorquote  %}
+## this
+---
+
+
+> In most cases, the value of this is determined by **how a function is called**. (MDN)
 
 `this` 是一個**變數**（代名詞），在一個函式被呼叫時，它會在新的執行環境中被建立，而 `this` 所指涉的對象取決於**該函式如何被呼叫**。
 
@@ -51,7 +52,7 @@ In most cases, the value of this is determined by **how a function is called**. 
 
 雖然這個法則適用於大部分狀況，但**有例外**。
 
-#### 純粹呼叫（Simple Call）
+### 純粹呼叫（Simple Call）
 
 我們用程式碼舉例說明，首先，以全域為例：
 
@@ -103,7 +104,7 @@ a() ;
 
 那什麼叫**做被誰（物件）呼叫**？
 
-#### 呼叫物件方法（Call Object Method）
+### 呼叫物件方法（Call Object Method）
 
 **呼叫物件方法（Call Object Method）**，就是函式被物件呼叫：
 
@@ -127,7 +128,7 @@ person.say() ; // Fei
 
 你可能會覺得，咦？可是物件 `person` 的方法 `say` 是參考全域物件中的函式 `say`，但這和 `this` 無關，**`this` 指涉的對象只取決於哪一個物件呼叫該函式**。
 
-#### 純粹呼叫與呼叫物件方法
+### 純粹呼叫與呼叫物件方法
 
 最後，我們結合純粹呼叫和呼叫物件方法的例子：
 
@@ -173,15 +174,17 @@ person.greet() ;
 
 由於 this 的例外狀況還有很多，詳細請容我日後再介紹，有興趣的朋友可以先閱讀參考資料中的大神文章，對 this 的理解會更加深刻。
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * `this` 是一個變數（代名詞），在一個函式被呼叫時，它會在新的函式執行環境中被建立。
 * 在**大部分**的狀況下，`this` 會指向呼叫該函式的物件，但有例外狀況。
 * 當函式被純粹呼叫時，`this` 都會指向全域物件 `window` 。
 * 當函式被物件呼叫（呼叫物件方法）時，`this` 會指向呼叫該函式的物件。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-37
 2. [MDN：this](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this)
 3. [重新認識 JavaScript: Day 20 What's "THIS" in JavaScript (鐵人精華版)](https://ithelp.ithome.com.tw/articles/10193193)

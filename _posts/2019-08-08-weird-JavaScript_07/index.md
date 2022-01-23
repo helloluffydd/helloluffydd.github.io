@@ -1,8 +1,8 @@
 ---
-title: Wierd JavaScript 07：變數環境與範圍鍊
+title: Wierd JavaScript - 07：變數環境與範圍鍊
 date: 2019-08-08 19:58:01
+featuredImage: scopeChain.JPG
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -10,11 +10,10 @@ tags:
 
 <!-- more -->
 
-### 變數環境
+## 變數環境
+---
 
-{% colorquote warning %}
-Where the variables live.
-{% endcolorquote  %}
+> Where the variables live.
 
 
 變數環境，指的是變數所處的位置。
@@ -72,9 +71,10 @@ console.log(m) ; // m is not defined
 
 在函式內宣告的變數，只在該函式的執行環境內有效，當函式執行完畢，該區域變數也就消滅了，這就是變數在函式裡的**作用域（Scope）**。
 
-<hr>
 
-### 範圍鍊（Scope Chain）
+
+## 範圍鍊（Scope Chain）
+---
 
 小飛：「如果函式執行時，在執行環境中找不到它要取用的值呢？」
 
@@ -158,9 +158,10 @@ function a(){
 
 a() ;
 ```
-<hr>
 
-### 結論
+
+## 結論
+---
 * 變數環境指的是變數所處的位置。
 * 在全域執行環境裡出現的變數，無論是否經過宣告 `var` ，都屬於全域變數。
 * 在函式裡經過 `var` 宣告的變數，屬於該函式的區域變數。
@@ -171,7 +172,8 @@ a() ;
 * 外部（執行）環境指的是變數或函式所處的詞彙環境。
 
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 2-15、2-16
 
 

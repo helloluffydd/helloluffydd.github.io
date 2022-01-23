@@ -1,8 +1,7 @@
 ---
-title: Wierd JavaScript 08：作用域、let 與區塊作用域
+title: Wierd JavaScript - 08：作用域、let 與區塊作用域
 date: 2019-08-09 11:34:15
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -12,7 +11,8 @@ tags:
 
 <!-- more -->
 
-### 為什麼要避免污染全域？
+## 為什麼要避免污染全域？
+---
 
 因為實務上，一支 JavaScript 腳本，也就是 `.js` 檔案，往往會由多位工程師協作撰寫，除此之外，一支 `.html` 檔案也有可能會載入多支 JS 腳本，在這些多人開發的情況下，如果不同開發者不小心在全域環境中使用了相同的變數名稱，那麼後撰寫或後載入的變數，就會覆寫既有變數的值，導致衝突，不易於管理。
 
@@ -22,11 +22,12 @@ tags:
 
 可以這麼說，我們利用作用域的特性，將變數存進函式區塊中，等到要用的時候再存取。**閉包（Closure）**的原理就是從這個概念出發的。我們之後會談到。
 
-### 作用域（Scope）
+## 作用域（Scope）
+---
 
-{% colorquote info %}
-Where a variable is **available** in your code.
-{% endcolorquote %}
+
+> Where a variable is **available** in your code.
+
 
 在 07 篇中我們就已經提過作用域：在函式內宣告的區域變數，只在該函式的執行環境內有效。
 
@@ -42,9 +43,8 @@ Where a variable is **available** in your code.
 
 在 **ECMAScript 第六版（俗稱 ES6）**發布以前，我們只能用 `var` 來宣告變數，於是會出現一些弔詭的現象，其中以下面這個範例最為經典：
 
-{% colorquote warning %}
-我希望在五秒內，每一秒就印出一個數字，分別是 0、1、2、3、4 。
-{% endcolorquote %}
+> 我希望在五秒內，每一秒就印出一個數字，分別是 0、1、2、3、4 。
+
 
 
 新手小飛可能會這樣寫：
@@ -59,7 +59,7 @@ for(var i = 0 ; i < 5 ; i++){
 
 但是他會發現結果不如預期，這段程式碼執行的結果是：**「1 秒後印出五個 5」**。
 
-<font style="font-size: 36px">OMG !! WHY ??</font>
+<span style="font-size: 36px">OMG !! WHY ??</font>
 
 這是因為，當我們在 `for` 迴圈中使用 `var` 來宣告 `i` 時，此時的 **`i` 會被存進全域環境**，成為全域變數。
 
@@ -83,16 +83,18 @@ for(var i = 0 ; i < 5 ; i++){
 
 2015 年 ES6 新增的 `let` 宣告，將變數綁定在 `{ ... }` 區塊，更清楚、有效切分作用域和變數環境。
 
-<hr>
 
-### let 與區塊作用域（Block Scope）
+
+## let 與區塊作用域（Block Scope）
+---
 
 簡單來說， `let` 宣告有下列幾個特點：
 
 1. 經過 `let` 宣告的變數，會將該變數環境綁定在其後的 `{ ... }` **區塊作用域**中，包括：
-   * function(){ ... }
-   * for(){ ... }
-   * if(){ ... }
+   * `function(){ ... }`
+   * `for(){ ... }`
+   * `if(){ ... }`
+
 
 既然如此，我們就可以利用 `let` 改寫上面那一段程式碼，在 `for` 中利用 `let` 宣告 `i` ，將其作用域綁定在後方 `{ ... }` 中，達到我們預期的目的：
 
@@ -197,9 +199,10 @@ let animal = 'griaffe' ;
 
 此外， ES6 還有新增另一種語法 **`const` 常數宣告**，它的特點幾乎與 `let` 相同，唯一不同的是，**經過 `const` 宣告的變數無法被覆寫（具有唯讀性）**，最常被用在賦值 DOM 元素。
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 實務上，我們會避免污染全域，減少全域變數的衝突發生。
 * 當今我們多用 `let` 宣告取代 `var` 來避免污染全域。
   * 經過 `let` 宣告的變數，會將該變數環境綁定在 `{ ... }` 區塊作用域中。
@@ -208,7 +211,8 @@ let animal = 'griaffe' ;
   * 在同個區塊作用域中，只能用 `let` 宣告一次，且宣告後在區塊中可以被覆寫。
 * 總而言之，函式區塊是切分變數環境（也就是變數作用域）的最小單位。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 2-17、2-18
 2. [MDN：let](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/let)
 3. [MDN：const](https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Reference/Statements/const)

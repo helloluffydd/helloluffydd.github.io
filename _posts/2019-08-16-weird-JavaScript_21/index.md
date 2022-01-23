@@ -1,16 +1,17 @@
 ---
-title: Wierd JavaScript 21：傳值 v.s. 傳參考
-tags:
-- JavaScript
-- Wierd JavaScript
+title: Wierd JavaScript - 21：傳值 v.s. 傳參考
 date: 2019-08-15 22:16:02
+featuredImage: byReference.JPG
+tags:
+- Wierd JavaScript
 ---
 
 傳值 v.s. 傳參考， JavaScript 偷偷做但不告訴你的概念。
 
 <!-- more -->
 
-### 資料型別
+## 資料型別
+---
 
 回顧 JavaScript 的資料型別，可以分為兩大類，共七種。哪兩類？哪七種呀？
 
@@ -30,9 +31,10 @@ date: 2019-08-15 22:16:02
 
 搞懂上面這兩個觀念之後，傳值與傳參考的原理就呼之欲出了！
 
-<hr>
 
-### 傳值（by Value）
+
+## 傳值（by Value）
+---
 
 在 JavaScript 中，**基本型別（純值）**的變數賦值或拷貝大部分是以**傳值**的方式實現。
 
@@ -60,9 +62,10 @@ console.log(a,b) ; // 200 100
 
 ![傳值：變數儲存新的純值到新的記憶體位置（圖片源自參考資料 1.）](./byValue.JPG)
 
-<hr>
 
-### 傳參考（by Reference）
+
+## 傳參考（by Reference）
+---
 
 在 JavaScript 中，**物件型別（物件、函式、陣列）**的變數賦值或拷貝大部分是以**傳參考**的方式實現。
 
@@ -119,16 +122,18 @@ console.log(a,b) ; // {name: "Fei", age: 17} {name: "Fei", age: 17}
 
 ![傳參考：變數會參考到相同物件的記憶體位置（圖片源自參考資料 1.）](./byReference.JPG)
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 在 JS 中，基本型別（純值）在賦予變數值、複製變數或更新（重新賦值）變數時，JS 引擎會參照到該值在記憶體中的位置，並傳遞值本身，為複製的變數建立一個新的記憶體位置來儲存傳遞的值。
 * 在 JS 中，物件型別（物件、函式、陣列）在賦予變數值、複製變數或更新（重新賦值）變數時，JS 引擎會參照到該物件在記憶體中的位置，並傳遞參考位置，複製的變數會同樣參考到物件儲存的記憶體位置。此外，物件被傳入函式中執行也擁有傳參考的特性。
 * 變數賦值、複製或更新（重新賦值），可以歸納到使用賦值運算子 `=` 的情境，此時純值會傳值，物件會傳參考。
 * 賦值運算子 `=` 的意義在於，若賦值資料是第一次宣告，則 JS 會新建記憶體位置儲存該資料，並賦值給左方變數。
 * 傳值或傳參考的歸納符合大部分的狀況，但有例外，且目前學界對於 JS 究竟是傳值、傳參考還是傳享（by Sharing）？並無定論，有興趣的人可以進一步參考下方資料文章。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-36
 2. [重新認識 JavaScript: Day 05 JavaScript 是「傳值」或「傳址」？](https://ithelp.ithome.com.tw/articles/10191057)
 3. [深入探討 JavaScript 中的參數傳遞：call by value 還是 reference？](https://blog.techbridge.cc/2018/06/23/javascript-call-by-value-or-reference/)

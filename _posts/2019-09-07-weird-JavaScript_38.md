@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 38：古典繼承 v.s. 原型繼承
+title: Wierd JavaScript - 38：古典繼承 v.s. 原型繼承
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-09-07 18:33:03
 ---
@@ -10,19 +9,21 @@ date: 2019-09-07 18:33:03
 
 <!-- more -->
 
-### 物件導向（Object Oriented）
+## 物件導向（Object Oriented）
+---
 
 JavaScript 是屬於**物件導向**的程式語言。
 
 物件導向，指的是，在 JavaScript 中，**物件**被視為程式組成的基本單元，而且物件之間彼此都會透過**繼承**的方式互相連結，產生關係，以便資料互相傳遞、取用。
 
-<hr>
 
-### 繼承（Inheritance）
 
-{% colorquote info %}
-One object gets access to the properties and methods of another object.
-{% endcolorquote %}
+## 繼承（Inheritance）
+---
+
+
+> One object gets access to the properties and methods of another object.
+
 
 繼承，指的是**一個物件取用另外一個物件的屬性或方法**。
 
@@ -32,9 +33,10 @@ One object gets access to the properties and methods of another object.
 
 而繼承的方式，主要分為**古典繼承**與**原型繼承**兩類。
 
-<hr>
 
-### 古典繼承（Classical Inheritance）
+
+## 古典繼承（Classical Inheritance）
+---
 
 古典繼承是當代非常主流而熱門的繼承方式， **Java** 、 **C#** 等程式語言都是採用古典繼承的設計機制。
 
@@ -49,9 +51,10 @@ One object gets access to the properties and methods of another object.
 
 除此之外，古典繼承採用樹狀結構的設計模式，當繼承物件數量增加時，很容易將物件集合成一個大熔爐，讓人搞不清楚內部物件詳細的連結方式。古典繼承好比一棟設計複雜的房子，當你想要換燈泡的時候，卻發現馬桶開始沖水，就好像，修改了 A 物件，卻非預期地影響了 B 物件。
 
-<hr>
 
-### 原型繼承（Prototypal Inheritance）
+
+## 原型繼承（Prototypal Inheritance）
+---
 
 相較於古典繼承，原型繼承較簡單易懂（Easy to understand），且具備彈性（Flexible）、可延展（Extensible）等優勢。
 
@@ -59,12 +62,14 @@ One object gets access to the properties and methods of another object.
 
 往後幾篇會介紹 JS 的原型以及繼承機制。
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 繼承，指的是一個物件取用另外一個物件的屬性或方法。
 * JavaScript 屬於物件導向的程式語言，它透過原型繼承的方式，將所有物件都串聯起來。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 5-53
 2. [Wiki：物件導向程式設計](https://zh.wikipedia.org/wiki/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1)

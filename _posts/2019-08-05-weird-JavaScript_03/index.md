@@ -1,8 +1,8 @@
 ---
-title: Wierd JavaScript 03：全域環境與全域物件
+title: Wierd JavaScript - 03：全域環境與全域物件
 date: 2019-08-05 19:04:03
+featuredImage: global.JPG
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -10,7 +10,8 @@ tags:
 
 <!-- more -->
 
-### 全域環境
+## 全域環境
+---
 
 JavaScript 的全域（Global）環境，指的就是 **（最）外部執行環境（Outer Environment）**，也是語法解析器解析 JavaScript 程式碼的地方，換句話說，你所寫的程式碼如果不在函式裡，那必然在**函式外（Not in a function），即全域環境**。
 
@@ -30,7 +31,7 @@ show() ;
 1. 全域物件（Global Object）
 2. 變數 `this`
 
-![Window 與 this](./window.JPG) 
+![window 與 this](./window.JPG) 
 
 如上圖，我們在 Google Chrome Dev Tool 中分別輸入 `window` 和 `this` ，會發現在全域環境下，**`this` 同樣指向 `window` 這個全域物件**。
 
@@ -48,9 +49,8 @@ console.log(window.a, window.b) ; // 'Hello JavaScript!!' ƒ foo(){return 100};
 
 既然全域物件命名為 `window` （視窗），就表示：每一個網頁（視窗）都是一個（全域）執行環境，互相獨立，互不干擾。
 
-<hr>
-
-### 結論
+## 結論
+---
 
 最後，可以用課程內這張圖來總結：
 
@@ -61,5 +61,6 @@ console.log(window.a, window.b) ; // 'Hello JavaScript!!' ƒ foo(){return 100};
 * 在全域環境中，變數 `this` 等於全域物件 `window` 。
 * 每一個網頁（視窗）都是一個 `window` ，互相獨立。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 2-9

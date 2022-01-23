@@ -1,8 +1,7 @@
 ---
-title: Wierd JavaScript 12：運算子的優先性與相依性
+title: Wierd JavaScript - 12：運算子的優先性與相依性
 date: 2019-08-11 17:28:16
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -11,11 +10,12 @@ tags:
 <!-- more -->
 
 
-### 優先性（Operator Precedence）
+## 優先性（Operator Precedence）
+---
 
 {% colorquote warning %}
 Which operator function gets called first.
-{% endcolorquote %}
+
 
 
 運算子的優先性指的是，哪一個運算子會優先被 JS 引擎呼叫執行？
@@ -33,14 +33,14 @@ var num = 3 + 4 * 5 ;
 console.log(num) ; // 23
 ```
 
-<hr>
 
-### 相依性（Operator Associativity）
 
-{% colorquote warning %}
-What order operator functions get called in: **Left-to-right** or **Right-to-left**.
-When operator functions have the same precedence. 
-{% endcolorquote %}
+## 相依性（Operator Associativity）
+---
+
+> What order operator functions get called in: **Left-to-right** or **Right-to-left**.
+> When operator functions have the same precedence. 
+
 
 相依性指的是，**當運算子具有相同優先性時，運算子執行的方向為何？**分為兩種：
 
@@ -61,12 +61,14 @@ console.log(b) ; // 5
 console.log(c) ; // 5
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 運算子的優先性指的是，JS 會處理擁有高優先次序的運算子。
 * 運算子的相依性指的是，當運算子具有相同優先次序時，運算子執行的方向。
 * 運算子的優先性與相依性可以參考 [MND 所整理的表格](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence)。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 3-22

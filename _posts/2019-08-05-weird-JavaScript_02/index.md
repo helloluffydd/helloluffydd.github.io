@@ -1,8 +1,8 @@
 ---
-title: Wierd JavaScript 02：Name / Value Pair 與物件
+title: Wierd JavaScript - 02：Name / Value Pair 與物件
 date: 2019-08-05 15:29:05
+featuredImage: nameValuePairs.JPG
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -10,12 +10,10 @@ Name/Value Pair？ Key/Value Pair？沒差啦！反正就得成雙成對。
 
 <!-- more -->
 
-### 名稱／數值配對（Name/Value Pair）
+## 名稱／數值配對（Name/Value Pair）
+---
 
-{% colorquote info %}
-**A Name which maps to a unique value**.
-The name may be fedined more than one, but **only can have one value in any given context**.
-{% endcolorquote %}
+> **A Name which maps to a unique value**. The name may be defined more than one, but **only can have one value in any given context**.
 
 **在執行環境中，只能存在一個名稱（Name），且該名稱只會對應到一個定義的數值（Value）**，即所謂的 Name/Value Pair，也有人稱為「鍵值配對」Key/Value Pair，類似 `Python` 中的「字典」（Dictionary）結構。
 
@@ -25,9 +23,7 @@ The name may be fedined more than one, but **only can have one value in any give
 personName = 'Marisa' ;
 ```
 
-{% colorquote info %}
-That value may be more name/value pair.
-{% endcolorquote %}
+> That value may be more name/value pair.
 
 但實際上， value 可以是更多 Name/Value Pairs 的集合：
 
@@ -42,13 +38,10 @@ peopleName = {
   } ;
 ```
 
-<hr>
+## 物件（Object）
+---
 
-### 物件（Object）
-
-{% colorquote info %}
-A collection of name/value pairs.
-{% endcolorquote %}
+> A collection of name/value pairs.
 
 在 JavaScript 中，物件最簡單的定義就是，**物件（Object）是一群 ame/value pairs 的集合**。
 
@@ -93,15 +86,15 @@ Taipei = {
 
 關於資料型別的詳細解釋，我們之後會提到。
 
-<hr>
-
-### 結論
+## 結論
+---
 
 * 名稱／數值配對（鍵值配對）指的是，在一執行環境中，一個名稱只能對應到一個值，且值可能是另一個物件（鍵值配對的集合）。
 * 物件指的是**鍵值配對的集合**。
 * **在 JavaScript 中，任何一筆資料，如果不是基本型別（值），就是物件型別。**
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 2-7
 2. [MDN：JavaScript data types and data structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 

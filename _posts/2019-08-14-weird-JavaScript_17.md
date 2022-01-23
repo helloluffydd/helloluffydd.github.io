@@ -1,7 +1,6 @@
 ---
-title: Wierd JavaScript 17：偽裝命名空間
+title: Wierd JavaScript - 17：偽裝命名空間
 tags:
-- JavaScript
 - Wierd JavaScript
 date: 2019-08-14 11:02:40
 ---
@@ -10,12 +9,12 @@ date: 2019-08-14 11:02:40
 
 <!-- more -->
 
-### 命名空間（Namespace）
+## 命名空間（Namespace）
+---
 
-{% colorquote warning %}
-A container for variables and functions.
-Typically to keep variables and functions with the same name seperate.
-{% endcolorquote %}
+> A container for variables and functions.
+> Typically to keep variables and functions with the same name seperate.
+
 
 
 命名空間指的是一個程式語言中**儲存變數與函式名稱的容器**，它的功用在於分離相同名稱的變數與函式。
@@ -30,9 +29,10 @@ console.log(greet) ; // Hola!
 
 解決這樣的方法就是，借助物件的特性，**假裝創造各自獨立的命名空間**。
 
-<hr>
 
-### 偽裝命名空間
+
+## 偽裝命名空間
+---
 
 利用物件實字 `{}` 建立新物件，並將相同變數分別儲存進不同的物件中。
 
@@ -55,14 +55,16 @@ console.log(greetEng.greet,greetSpn.greet) ; // Hello! Hola!
   greetEng.say.morning = 'Good morning!' ; // cannot set property of undefined 
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 命名空間指的是一個程式語言中儲存變數與函式名稱的容器，但 JavaScript 並沒有這項功能。
 * 在 JS 中，當我們想要用同一個變數名稱來指涉相似的資料，可以利用物件來偽裝命名空間。
 * 必須先宣告（初始化）物件後，才能開始在物件中新增屬性或方法。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-32
 
 

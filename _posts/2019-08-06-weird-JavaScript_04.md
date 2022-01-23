@@ -1,8 +1,7 @@
 ---
-title: Wierd JavaScript 04：創造、提升與 undefined
+title: Wierd JavaScript - 04：創造、提升與 undefined
 date: 2019-08-06 11:10:21
 tags:
-- JavaScript
 - Wierd JavaScript
 ---
 
@@ -19,15 +18,15 @@ tags:
 1. 創造階段（Creation）
 2. 提升階段（Hoisting）
 
-<hr>
-
-### Creation（創造）
+## Creation（創造）
+---
 
 首先， Creation 階段指的是**建立全域執行環境**、**this**以及**最外部環境**。
 
 在上一篇中我們有說明，在環域環境中：`全域執行環境 = this = 外部環境`。
 
-### Hoisting（提升）
+## Hoisting（提升）
+---
 
 Creation 階段後接著進行 Hoisting 階段：**JavaScript 引擎會先幫你宣告 `變數` 與 `函式`** ，其中，**變數會先被定義為 `undefined`** ，等到執行時才會真正賦值。
 
@@ -45,7 +44,7 @@ b() ;
 
 上面這段程式碼執行後會依序出現：
 
-```
+```plain
 Variable would be hoisted in JS.
 Function would be hoisted in JS.
 ```
@@ -64,12 +63,12 @@ function b(){
 
 此時，執行結果會依序出現：
 
-```
+```plain
 undefined
 Function would be hoisted in JS.
 ```
 
-<font style="font-size: 36px">OMG !! WHY ???</font>
+<span style="font-size: 36px">OMG !! WHY ???</span>
 
 為什麼此時 `a` 變成 `undefined` ，而 function `b` 依然可以執行？
 
@@ -120,9 +119,10 @@ funcExpressions() ; // Function Expressions can not be hoisted in JS.
 console.log(funcExpressions) ; // ƒ (){ console.log(...) }
 ```
 
-<hr>
 
-### undefined
+
+## undefined
+---
 
 JS 編譯器進行 Hoisting 時，**如果該變數還沒有被賦予值（Value）就直接被取用，JS 就會先賦予該變數 `undefined` 這個值**。也就是前面所舉例的這段程式碼：
 
@@ -169,13 +169,15 @@ console.log(a >= 0) ;　 // true .... ˊ<_ˋ????????
 
 關於 `null` 的詳細介紹與型別比較，就等之後有機會再談囉！
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 創造提升（Creation & Hoisting）指的是：在 JS 真正執行你寫的 Code 之前， JS 引擎會先跑過整個全域執行環境，並將 `變數宣告` 與 `函式宣告` 抓出來存進電腦記憶體，供後續真正執行時使用。
 * `undefined` 屬於 JS 基本型別的其中一種「值」（Value），意思是：「該變數存在於 JS 中，且已經被宣告，但尚未被賦予值」。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 2-10 、 2-11
 2. [MDN：Hoisting](https://developer.mozilla.org/en-US/docs/Glossary/Hoisting)
 

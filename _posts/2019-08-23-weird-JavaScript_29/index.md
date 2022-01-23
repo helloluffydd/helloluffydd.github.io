@@ -1,16 +1,16 @@
 ---
-title: Wierd JavaScript 29：立即呼叫函式表達式（IIFEs）
-tags:
-- JavaScript
-- Wierd JavaScript
+title: Wierd JavaScript - 29：立即呼叫函式表達式（IIFEs）
 date: 2019-08-23 20:26:13
+tags:
+- Wierd JavaScript
 ---
 
 有一種函式，我們用完就丟。
 
 <!-- more -->
 
-### 創造函式的方法
+## 創造函式的方法
+---
 
 至今，我們已經介紹過創造函式的兩種方法，還記得嗎？
 
@@ -58,9 +58,10 @@ console.log(greet) ;
 
 還記得函式屬於什麼嗎？
 
-<hr>
 
-### 立即呼叫函式表達式（Immediately Invoked Function Expressions）
+
+## 立即呼叫函式表達式（Immediately Invoked Function Expressions）
+---
 
 **函式屬於特殊的物件**，也就是函式物件，具有名稱屬性與程式屬性，也可以儲存其他屬性或方法。
 
@@ -96,9 +97,9 @@ function(name){
 
 ![syntaxError（圖片源自參考資料 1.）](syntaxError.JPG)
 
-<br>
 
-<font style="font-size: 32px">JavaScript 笑你，嘻嘻。</font>
+
+<span style="font-size: 32px">JavaScript 笑你，嘻嘻。</font>
 
 這因為 JS 語法解析器看到一段程式碼，如果是由 `function` 開頭，**它會預期這是一段函式陳述句**，必須給函式補上名字。
 
@@ -133,12 +134,14 @@ function(name){
 // (function try(){console.log('JS is so HARD!!')}) ; // unexpected token try （有名字的函式不行）
 ```
 
-<hr>
 
-### 結論
+
+## 結論
+---
 * 立即呼叫函式表達式（IIFEs）：利用表達式創造一個函式物件後，立刻呼叫，執行運算，用完就丟。
 * IIFEs 常見於各種框架與資源庫中，當我們不需要重複執行函式時，可以利用 IIFEs 減少記憶體負擔。
 
-### 參考資料
+## 參考資料
+---
 1. JavaScript 全攻略：克服 JS 奇怪的部分 4-44
 
