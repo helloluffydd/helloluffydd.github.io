@@ -3,7 +3,7 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import type { IFrontmatter } from '@/type';
 import { generateTagsData } from '@/utils/helpers';
 
-const allArticles = await Astro.glob<IFrontmatter>('../articles/*.md');
+const allArticles = await Astro.glob<IFrontmatter>('../articles/**/*.md');
 const tagsMap = new Map();
 
 allArticles.forEach((a) => {

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import type { FrontmatterPage, IFrontmatter } from '@/type';
-import { appConfig } from '@/utils/appConfig';
+import { blogConfig } from '@/utils/appConfig';
 import { sortByDate } from '@/utils/helpers';
 
 type GetStaticPaths = {
@@ -22,7 +22,7 @@ interface Props {
 
 const { page } = Astro.props as Props;
 
-const titleSuffix = ` - ${appConfig.name}`;
+const titleSuffix = ` - ${blogConfig.name}`;
 const titleBase = `Blog page ${page.currentPage}`;
 const title = `${titleBase} | ${titleSuffix}`;
 const description =
