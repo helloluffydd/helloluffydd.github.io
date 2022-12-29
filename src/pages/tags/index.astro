@@ -1,0 +1,36 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { IFrontmatter } from '@/type';
+import { generateTagsData } from '@/utils/helpers';
+
+const allArticles = await Astro.glob<IFrontmatter>('../articles/*.md');
+const tagsMap = new Map();
+
+allArticles.forEach((a) => {
+  if (a.frontmatter.tags && a.frontmatter.tags.length > 0) {
+    a.frontmatter.tags.forEach((t) => {
+      if (tagsMap.has(t)) return;
+      tagsMap.set(t, true);
+    });
+  }
+});
+
+// interface Props {}
+
+// const {} = Astro.props as Props;
+---
+
+<BaseLayout>
+  <h2>分類總覽</h2>
+  <ul>
+    {
+      generateTagsData([...tagsMap.keys()]).map((t) => (
+        <li>
+          <a href={`/tags/${t.slug}`}>{t.name}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
+
+<style></style>

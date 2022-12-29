@@ -1,0 +1,36 @@
+---
+import { Icon } from 'astro-icon';
+---
+
+<button type="button" title="button" id="theme-button" class="w-8">
+  <Icon name="ph:moon-stars-fill" id="moon-icon" style={{ display: 'none' }} />
+  <Icon name="ph:sun-fill" id="sun-icon" style={{ display: 'none' }} />
+</button>
+
+<script>
+  const moonIcon = document.getElementById('moon-icon') as HTMLElement;
+  const sunIcon = document.getElementById('sun-icon') as HTMLElement;
+
+  const isDark = localStorage.getItem('theme') || '';
+  const shouldSetDark = isDark === 'dark';
+  //  ||window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  localStorage.setItem('theme', shouldSetDark ? 'dark' : 'bright');
+  moonIcon.style.display = shouldSetDark ? 'none' : 'block';
+  sunIcon.style.display = shouldSetDark ? 'block' : 'none';
+
+  if (shouldSetDark) {
+    document.documentElement.classList.add('dark');
+  }
+
+  const themeButton = document.getElementById('theme-button') as HTMLElement;
+
+  themeButton.addEventListener('click', () => {
+    const isDark = localStorage.getItem('theme') === 'dark';
+
+    document.documentElement.classList[isDark ? 'remove' : 'add']('dark');
+    localStorage.setItem('theme', isDark ? 'bright' : 'dark');
+    moonIcon.style.display = isDark ? 'block' : 'none';
+    sunIcon.style.display = isDark ? 'none' : 'block';
+  });
+</script>

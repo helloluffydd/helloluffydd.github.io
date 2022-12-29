@@ -1,0 +1,52 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { FrontmatterPage, IFrontmatter } from '@/type';
+import { appConfig } from '@/utils/appConfig';
+import { sortByDate } from '@/utils/helpers';
+
+type GetStaticPaths = {
+  paginate: any;
+}; // Overrides `GetStaticPathsOptions` types from Astro
+
+export async function getStaticPaths({ paginate }: GetStaticPaths) {
+  const allArticles = await Astro.glob<IFrontmatter>('./**/*.md');
+  const sortedArticles = sortByDate(allArticles);
+
+  // Return a paginated collection of paths for all posts
+  return paginate(sortedArticles, { pageSize: 2 });
+}
+
+interface Props {
+  page: FrontmatterPage;
+}
+
+const { page } = Astro.props as Props;
+
+const titleSuffix = ` - ${appConfig.name}`;
+const titleBase = `Blog page ${page.currentPage}`;
+const title = `${titleBase} | ${titleSuffix}`;
+const description =
+  'Pagination example built with Astro styled with Tailwind CSS.';
+---
+
+<BaseLayout>
+  <p>{title}</p>
+  <p>{description}</p>
+
+  <h2>文章列表</h2>
+
+  <ul>
+    {
+      page.data.map(({ frontmatter, url }) => (
+        <li>
+          <a href={url}>{frontmatter.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+
+  {page.url.prev && <a href={page.url.prev}>Prev page</a>}
+  {page.url.next && <a href={page.url.next}>Next page</a>}
+</BaseLayout>
+
+<style></style>

@@ -1,0 +1,30 @@
+---
+import { IFrontmatter } from '@/type';
+
+export interface Props {
+  frontmatter: IFrontmatter;
+  url: string;
+}
+
+const { frontmatter, url } = Astro.props;
+---
+
+<a href={url}>
+  <div
+    class="h-full border border-solid border-neutral-900 overflow-hidden rounded-md dark:border-slate-200"
+  >
+    <div>
+      <img
+        class="w-full h-56 object-cover object-center"
+        src={frontmatter.imgSrc}
+        alt={frontmatter.imgAlt}
+        loading="lazy"
+      />
+    </div>
+    <div class="px-3 pt-4 pb-6 text-center">
+      <h2 class="text-xl font-semibold">{frontmatter.title}</h2>
+      <div class="mt-1 text-xs text-gray-400">{frontmatter.pubDate}</div>
+      <div class="mt-2 text-sm">{frontmatter.description}</div>
+    </div>
+  </div>
+</a>

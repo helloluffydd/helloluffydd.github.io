@@ -1,0 +1,57 @@
+---
+import type { MarkdownInstance } from 'astro';
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import type { IFrontmatter } from '@/type';
+import { generateTagsData, sortByDate } from '@/utils/helpers';
+
+export async function getStaticPaths() {
+  const allArticles = await Astro.glob<IFrontmatter>('../articles/**/*.md');
+  const sortedArticles = sortByDate(allArticles);
+  const tagsMap = new Map();
+
+  sortedArticles.forEach((a) => {
+    if (a.frontmatter.tags && a.frontmatter.tags.length > 0) {
+      a.frontmatter.tags.forEach((t) => {
+        if (tagsMap.has(t)) return;
+        tagsMap.set(t, true);
+      });
+    }
+  });
+
+  const allTagsData = generateTagsData([...tagsMap.keys()]);
+  // Return a paginated collection of paths for all posts
+  return allTagsData.map((t) => {
+    const tArticles = sortedArticles.filter((a) =>
+      a.frontmatter.tags?.includes(t.name)
+    );
+
+    return {
+      params: { tag: t.slug },
+      props: { tag: t.name, articles: tArticles },
+    };
+  });
+}
+
+interface Props {
+  tag: string;
+  articles: MarkdownInstance<IFrontmatter>[];
+}
+
+const { tag, articles } = Astro.props as Props;
+---
+
+<BaseLayout>
+  <h2>分類 - {tag}</h2>
+  <ul>
+    {
+      articles.map(({ frontmatter, url }) => (
+        <li>
+          <a href={url}>{frontmatter.title}</a>
+        </li>
+      ))
+    }
+  </ul>
+</BaseLayout>
+
+<style></style>

@@ -1,0 +1,63 @@
+---
+import Footer from '@/components/organism/Footer.astro';
+import Nav from '@/components/organism/Nav.astro';
+import { blogConfig } from '@/utils/appConfig';
+
+export interface Props {
+  metaData?: {
+    title: string;
+    description: string;
+  };
+}
+
+const { title, description, author, locale } = blogConfig;
+
+const { metaData = { title: '', description: '' } } = Astro.props;
+
+const pageTitle = metaData.title ? `${metaData.title} | ${title}` : title;
+const pageDescription = metaData.description || description;
+---
+
+<!DOCTYPE html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+
+    <meta name="description" content={pageDescription} />
+    <meta name="author" content={author} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+  </head>
+
+  <body>
+    <div class="container flex flex-col justify-between mx-auto min-h-screen">
+      <Nav />
+      <main class="flex-auto px-4 pt-4 pb-16 md:px-0">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<style is:global>
+  @tailwind base;
+
+  @layer base {
+    body {
+      @apply font-serif font-medium bg-neutral-100
+            /* transition-colors ease-in-out duration-500 */
+            dark:bg-primary dark:text-neutral-300;
+    }
+
+    hr {
+      @apply border-neutral-900 dark:border-neutral-200;
+    }
+  }
+
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import { Icon } from 'astro-icon';
+
+import { generateTagsData } from '@/utils/helpers';
+
+import BaseLayout from './BaseLayout.astro';
+
+// 1. The frontmatter prop gives access to frontmatter and other data
+const {
+  frontmatter: { title, description, pubDate, imgSrc, tags },
+} = Astro.props;
+
+const tagData = generateTagsData(tags);
+---
+
+<BaseLayout metaData={{ title, description }}>
+  <article
+    class="prose prose-base dark:prose-invert md:prose-lg max-w-none sm:px-4 md:px-16 md:py-6 lg:px-24"
+  >
+    <h1>{title}</h1>
+    <div class="flex flex-row flex-wrap justify-start items-center gap-3">
+      <div class="flex flex-row flex-wrap justify-start items-center gap-2">
+        <div class="w-5 sm:w-6">
+          <Icon name="ic:baseline-edit-calendar" />
+        </div>
+        <time datetime={pubDate} class="mr-2">{pubDate}</time>
+      </div>
+      <div class="flex flex-row flex-wrap justify-start items-center gap-2">
+        <div class="w-5 sm:w-6">
+          <Icon name="clarity:tags-solid" />
+        </div>
+        {
+          tagData.map((t) => (
+            <a href={`/tags/${t.slug}`} class="underline-offset-2">
+              # {t.name}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    {imgSrc && <img src={imgSrc} alt="" class="rounded-lg" id="banner-img" />}
+    <p>
+      {description}
+    </p>
+    <slot />
+  </article>
+</BaseLayout>
+
+<script>
+  const imgs = [...document.querySelectorAll('article img')];
+
+  if (imgs.length > 0) {
+    for (let i = 0; i < imgs.length; i++) {
+      const { clientWidth, clientHeight } = imgs[i] as Element;
+
+      if (clientHeight > clientWidth) {
+        (imgs[i] as Element as HTMLElement).style.width = '60%';
+      }
+    }
+  }
+</script>
