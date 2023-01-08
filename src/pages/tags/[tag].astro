@@ -6,7 +6,7 @@ import type { IFrontmatter } from '@/type';
 import { generateTagsData, sortByDate } from '@/utils/helpers';
 
 export async function getStaticPaths() {
-  const allArticles = await Astro.glob<IFrontmatter>('../articles/**/*.md');
+  const allArticles = await Astro.glob<IFrontmatter>('../articles/**/*.mdx');
   const sortedArticles = sortByDate(allArticles);
   const tagsMap = new Map();
 

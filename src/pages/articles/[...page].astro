@@ -9,10 +9,8 @@ type GetStaticPaths = {
 }; // Overrides `GetStaticPathsOptions` types from Astro
 
 export async function getStaticPaths({ paginate }: GetStaticPaths) {
-  const allArticles = await Astro.glob<IFrontmatter>('./**/*.md');
+  const allArticles = await Astro.glob<IFrontmatter>('./**/*.mdx');
   const sortedArticles = sortByDate(allArticles);
-
-  // Return a paginated collection of paths for all posts
   return paginate(sortedArticles, { pageSize: 2 });
 }
 

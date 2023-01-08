@@ -6,7 +6,7 @@ import { sortByDate } from '@/utils/helpers';
 
 export interface Props {}
 
-const allArticles = await Astro.glob<IFrontmatter>('./articles/**/*.md');
+const allArticles = await Astro.glob<IFrontmatter>('./articles/**/*.mdx');
 const sortedArticles = sortByDate(allArticles);
 ---
 
@@ -17,7 +17,7 @@ const sortedArticles = sortByDate(allArticles);
     <div class="leading-loose flex-1 text-center">
       <h2 class="text-2xl mb-4 hidden md:block">Hi! I'm Luffy.</h2>
       <p>從小到大都讀文科，最後成為一名前端工程師。</p>
-      <p>最喜歡的一句話：「相信而堅持，堅持而相信。」</p>
+      <p>最喜歡的一句話是「相信而堅持，堅持而相信。」</p>
       <p>生活中的深思奇想，希望這裡是它們最後的棲地。</p>
     </div>
     <div
@@ -36,6 +36,7 @@ const sortedArticles = sortByDate(allArticles);
     <ul class="grid grid-cols-1 gap-6 md:grid-cols-3 items-stretch">
       {
         sortedArticles
+          .filter((post) => !post.frontmatter.draft)
           .slice(0, 3)
           .map(({ frontmatter, url }) => (
             <PostCard frontmatter={frontmatter} url={url || ''} />

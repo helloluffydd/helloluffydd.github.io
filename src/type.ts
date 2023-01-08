@@ -1,6 +1,6 @@
-import type { MarkdownInstance, Page } from 'astro';
+import type { MDXInstance, Page } from 'astro';
 
-export declare type FrontmatterPage = Page<MarkdownInstance<IFrontmatter>>;
+export declare type FrontmatterPage = Page<MDXInstance<IFrontmatter>>;
 
 export interface IFrontmatter {
   title: string;
@@ -8,6 +8,7 @@ export interface IFrontmatter {
   pubDate: string;
   imgSrc: string;
   imgAlt: string;
+  draft?: boolean;
   tags?: string[];
 }
 

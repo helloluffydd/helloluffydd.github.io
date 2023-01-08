@@ -1,4 +1,5 @@
 ---
+draft: true
 layout: '@/layouts/PostLayout.astro'
 title: 第六篇文章-Typography example
 description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi.

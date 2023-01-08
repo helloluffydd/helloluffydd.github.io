@@ -1,10 +1,8 @@
-import type { MarkdownInstance, MDXInstance } from 'astro';
+import type { MDXInstance } from 'astro';
 
 import { IFrontmatter } from '@/type';
 
-export const sortByDate = (
-  posts: (MarkdownInstance<IFrontmatter> | MDXInstance<IFrontmatter>)[]
-) => {
+export const sortByDate = (posts: MDXInstance<IFrontmatter>[]) => {
   return posts.sort(
     (a, b) =>
       new Date(b.frontmatter.pubDate).valueOf() -
