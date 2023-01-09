@@ -3,7 +3,7 @@ layout: '@/layouts/PostLayout.astro'
 title: 第一篇文章
 description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi.
 publicDate: 2020-02-01 23:00
-coverImgSrc: '/src/pages/articles/first-post/cover-1.jpg'
+# coverImgSrc: '/src/pages/articles/first-post/cover-1.jpg'
 coverImgAlt: 'Image post 2'
 tags: 
   - Astro
@@ -11,6 +11,11 @@ tags:
 ---
 
 import { Image, Picture } from '@astrojs/image/components';
+
+import coverImg from './cover-1.jpg';
+
+export const coverImgSrc = coverImg.src;
+
 
 Full typography example at [this page](./sixth-post).
 

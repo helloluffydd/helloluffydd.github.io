@@ -2,6 +2,10 @@ import type { MDXInstance } from 'astro';
 
 import { IFrontmatter } from '@/type';
 
+export interface MDXInstanceProperty extends MDXInstance<IFrontmatter> {
+  coverImgSrc: string;
+}
+
 export const sortByDate = (posts: MDXInstance<IFrontmatter>[]) => {
   return posts.sort(
     (a, b) =>

@@ -3,20 +3,22 @@ import { IFrontmatter } from '@/type';
 
 export interface Props {
   frontmatter: IFrontmatter;
+  coverImgSrc: string;
   url: string;
 }
 
-const { frontmatter, url } = Astro.props;
+const { frontmatter, url, coverImgSrc } = Astro.props;
 ---
 
 <a href={url}>
   <div
     class="h-full border border-solid border-neutral-900 overflow-hidden rounded-md dark:border-slate-200"
   >
+    {frontmatter.coverImgSrc}
     <div>
       <img
         class="w-full h-56 object-cover object-center"
-        src={frontmatter.coverImgSrc}
+        src={coverImgSrc}
         alt={frontmatter.coverImgAlt}
         loading="lazy"
       />

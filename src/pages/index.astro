@@ -2,7 +2,7 @@
 import PostCard from '@/components/molecule/PostCard.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { IFrontmatter } from '@/type';
-import { sortByDate } from '@/utils/helpers';
+import { MDXInstanceProperty, sortByDate } from '@/utils/helpers';
 
 export interface Props {}
 
@@ -35,11 +35,15 @@ const sortedArticles = sortByDate(allArticles);
     <h2 class="text-2xl font-bold mb-6">Latest Posts</h2>
     <ul class="grid grid-cols-1 gap-6 md:grid-cols-3 items-stretch">
       {
-        sortedArticles
+        (sortedArticles as MDXInstanceProperty[])
           .filter((post) => !post.frontmatter.draft)
           .slice(0, 3)
-          .map(({ frontmatter, url }) => (
-            <PostCard frontmatter={frontmatter} url={url || ''} />
+          .map(({ frontmatter, url, coverImgSrc }) => (
+            <PostCard
+              frontmatter={frontmatter}
+              url={url || ''}
+              coverImgSrc={coverImgSrc || ''}
+            />
           ))
       }
     </ul>
