@@ -7,7 +7,7 @@ import BaseLayout from './BaseLayout.astro';
 
 // 1. The frontmatter prop gives access to frontmatter and other data
 const {
-  frontmatter: { title, description, pubDate, imgSrc, tags },
+  frontmatter: { title, description, publicDate, coverImgSrc, tags },
 } = Astro.props;
 
 const tagData = generateTagsData(tags);
@@ -23,7 +23,7 @@ const tagData = generateTagsData(tags);
         <div class="w-5 sm:w-6">
           <Icon name="ic:baseline-edit-calendar" />
         </div>
-        <time datetime={pubDate} class="mr-2">{pubDate}</time>
+        <time datetime={publicDate} class="mr-2">{publicDate}</time>
       </div>
       <div class="flex flex-row flex-wrap justify-start items-center gap-2">
         <div class="w-5 sm:w-6">
@@ -38,7 +38,11 @@ const tagData = generateTagsData(tags);
         }
       </div>
     </div>
-    {imgSrc && <img src={imgSrc} alt="" class="rounded-lg" id="banner-img" />}
+    {
+      coverImgSrc && (
+        <img src={coverImgSrc} alt="" class="rounded-lg" id="banner-img" />
+      )
+    }
     <p>
       {description}
     </p>

@@ -5,8 +5,8 @@ import { IFrontmatter } from '@/type';
 export const sortByDate = (posts: MDXInstance<IFrontmatter>[]) => {
   return posts.sort(
     (a, b) =>
-      new Date(b.frontmatter.pubDate).valueOf() -
-      new Date(a.frontmatter.pubDate).valueOf()
+      new Date(b.frontmatter.publicDate).valueOf() -
+      new Date(a.frontmatter.publicDate).valueOf()
   );
 };
 

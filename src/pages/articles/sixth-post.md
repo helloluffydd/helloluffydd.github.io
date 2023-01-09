@@ -3,9 +3,9 @@ draft: true
 layout: '@/layouts/PostLayout.astro'
 title: 第六篇文章-Typography example
 description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi.
-pubDate: 2020-02-02
-imgSrc: '/src/pages/articles/cover-3.jpg'
-imgAlt: 'Image post'
+publicDate: 2020-02-02
+coverImgSrc: '/src/pages/articles/cover-3.jpg'
+coverImgAlt: 'Image post'
 tags: 
   - Astro
   - LeetCode

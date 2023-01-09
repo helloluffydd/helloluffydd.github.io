@@ -16,14 +16,14 @@ const { frontmatter, url } = Astro.props;
     <div>
       <img
         class="w-full h-56 object-cover object-center"
-        src={frontmatter.imgSrc}
-        alt={frontmatter.imgAlt}
+        src={frontmatter.coverImgSrc}
+        alt={frontmatter.coverImgAlt}
         loading="lazy"
       />
     </div>
     <div class="px-3 pt-4 pb-6 text-center">
       <h2 class="text-xl font-semibold">{frontmatter.title}</h2>
-      <div class="mt-1 text-xs text-gray-400">{frontmatter.pubDate}</div>
+      <div class="mt-1 text-xs text-gray-400">{frontmatter.publicDate}</div>
       <div class="mt-2 text-sm">{frontmatter.description}</div>
     </div>
   </div>

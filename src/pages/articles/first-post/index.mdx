@@ -2,18 +2,27 @@
 layout: '@/layouts/PostLayout.astro'
 title: 第一篇文章
 description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur vero esse non molestias eos excepturi.
-pubDate: 2020-02-01 23:00
-imgSrc: '/src/pages/articles/first-post/cover-1.jpg'
-imgAlt: 'Image post 2'
+publicDate: 2020-02-01 23:00
+coverImgSrc: '/src/pages/articles/first-post/cover-1.jpg'
+coverImgAlt: 'Image post 2'
 tags: 
   - Astro
   - JavaScript
 ---
 
+import { Image, Picture } from '@astrojs/image/components';
+
 Full typography example at [this page](./sixth-post).
 
 有一種函式，我們用完就丟。
-
+{/* 
+<Picture 
+  src={import('./cover-1.jpg')} 
+  alt="A rocketship in space." 
+  sizes="(max-width: 800px) 100vw, 800px" 
+  widths={[200, 400, 800]} 
+  aspectRatio="832:1109"  /> 
+        */}
 
 ## 創造函式的方法
 
@@ -100,7 +109,7 @@ function(name){
 但是 JS 引擎卻告訴你：
 
 
-![syntaxError（圖片源自參考資料 1.）](/src/pages/articles/first-post/cover-1.jpg)
+<Image src={import('./cover-1.jpg')} alt="A rocketship in space."/>
 
 
 
