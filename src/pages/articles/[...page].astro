@@ -20,7 +20,7 @@ interface Props {
 
 const { page } = Astro.props as Props;
 
-const titleSuffix = ` - ${blogConfig.name}`;
+const titleSuffix = ` - ${blogConfig.title}`;
 const titleBase = `Blog page ${page.currentPage}`;
 const title = `${titleBase} | ${titleSuffix}`;
 const description =

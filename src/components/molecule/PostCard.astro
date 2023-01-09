@@ -14,7 +14,6 @@ const { frontmatter, url, coverImgSrc } = Astro.props;
   <div
     class="h-full border border-solid border-neutral-900 overflow-hidden rounded-md dark:border-slate-200"
   >
-    {frontmatter.coverImgSrc}
     <div>
       <img
         class="w-full h-56 object-cover object-center"
@@ -23,10 +22,10 @@ const { frontmatter, url, coverImgSrc } = Astro.props;
         loading="lazy"
       />
     </div>
-    <div class="px-3 pt-4 pb-6 text-center">
+    <div class="px-6 pt-4 pb-6 text-center">
       <h2 class="text-xl font-semibold">{frontmatter.title}</h2>
-      <div class="mt-1 text-xs text-gray-400">{frontmatter.publicDate}</div>
-      <div class="mt-2 text-sm">{frontmatter.description}</div>
+      <div class="mt-2 text-xs text-gray-400">{frontmatter.publicDate}</div>
+      <div class="mt-2 text-sm text-justify">{frontmatter.description}</div>
     </div>
   </div>
 </a>

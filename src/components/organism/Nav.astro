@@ -1,14 +1,19 @@
 ---
 import ThemeButton from '@/components/atom/ThemeButton.astro';
+import { blogConfig, navLinks } from '@/utils/appConfig';
 ---
 
 <nav class="flex justify-between items-center p-4 sm:px-0 sm:py-6">
-  <a href="/" class="text-xl font-bold">Hello Luffy</a>
-  <!-- <div class="flex justify-between items-center w-1/4">
-    <a href="/articles">Articles</a>
-    <a href="/tags">Tags</a>
-    <a href="/about">About</a>
-  </div> -->
+  <a href="/" class="text-xl font-bold">{blogConfig.title}</a>
+  {
+    navLinks.length > 0 && (
+      <div class="flex justify-between items-center w-1/4">
+        {navLinks.map(({ name, href }) => (
+          <a href={href}>{name}</a>
+        ))}
+      </div>
+    )
+  }
   <ThemeButton />
 </nav>
 <hr />

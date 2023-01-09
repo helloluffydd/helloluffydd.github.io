@@ -1,61 +1,23 @@
 ---
 import { Icon } from 'astro-icon';
 
+import { footerLinks } from '@/utils/appConfig';
+import { generateCopyright } from '@/utils/helpers';
+
 const d = new Date();
 const year = d.getFullYear();
 ---
 
 <hr />
 <footer class="flex justify-between items-center p-4 sm:px-0 sm:py-6">
-  <div>Copyright © {year} Luffy</div>
-  <div class="flex justify-between items-center w-[40%] sm:w-1/4">
-    <a
-      href="https://www.facebook.com/luffychen0715"
-      class="w-6 sm:w-7"
-      target="_blank"
-      rel="noopener"
-    >
-      <Icon name="ic:outline-facebook" id="fb-icon" />
-    </a>
-
-    <a
-      href="https://www.instagram.com/hello.luffy.dd/"
-      class="w-6 sm:w-7"
-      target="_blank"
-      rel="noopener"
-    >
-      <Icon name="uil:instagram" id="ig-icon" />
-    </a>
-
-    <a
-      href="https://medium.com/@luffychen0715"
-      class="w-6 sm:w-7"
-      target="_blank"
-      rel="noopener"
-    >
-      <Icon name="uim:medium-m" id="medium-icon" />
-    </a>
-    <!-- 
-    <a
-      href="https://www.instagram.com/dada.code.dev/"
-      class="w-6 sm:w-7"
-      target="_blank"
-      rel="noopener"
-    >
-      <Icon name="ic:outline-code-off" id="linkedin-icon" />
-    </a> -->
-
-    <!-- <a
-      href="https://www.linkedin.com/in/guan-da-luffy-chen-94b31616b/"
-      class="w-6 sm:w-7"
-      target="_blank"
-      rel="noopener"
-    >
-      <Icon name="ri:linkedin-box-fill" id="linkedin-icon" />
-    </a> -->
-
-    <!-- <a href="" class="w-6 sm:w-7" target="_blank"  rel="noopener">
-      <Icon name="mdi:twitter" id="twitter-icon" />
-    </a> -->
+  <div>{generateCopyright(year)}</div>
+  <div class="flex justify-between items-center w-[40%] sm:w-1/5">
+    {
+      footerLinks.map(({ id, href, iconName }) => (
+        <a href={href} class="w-6 sm:w-7" target="_blank" rel="noopener">
+          <Icon name={iconName} id={id} />
+        </a>
+      ))
+    }
   </div>
 </footer>

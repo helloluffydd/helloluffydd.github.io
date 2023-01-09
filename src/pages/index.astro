@@ -2,6 +2,7 @@
 import PostCard from '@/components/molecule/PostCard.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { IFrontmatter } from '@/type';
+import { blogConfig, selfIntros } from '@/utils/appConfig';
 import { MDXInstanceProperty, sortByDate } from '@/utils/helpers';
 
 export interface Props {}
@@ -15,10 +16,8 @@ const sortedArticles = sortByDate(allArticles);
     class="mt-8 my-12 flex flex-col-reverse justify-between items-center md:flex-row"
   >
     <div class="leading-loose flex-1 text-center">
-      <h2 class="text-2xl mb-4 hidden md:block">Hi! I'm Luffy.</h2>
-      <p>從小到大都讀文科，最後成為一名前端工程師。</p>
-      <p>最喜歡的一句話是「相信而堅持，堅持而相信。」</p>
-      <p>生活中的深思奇想，希望這裡是它們最後的棲地。</p>
+      <h2 class="text-2xl mb-4 hidden md:block">{blogConfig.greeting}</h2>
+      {selfIntros.map((s) => <p>{s}</p>)}
     </div>
     <div
       class="w-[90%] border-b border-neutral-900 mb-8 dark:border-b md:flex-[0.6] md:mr-12 dark:border-neutral-200"
@@ -29,25 +28,27 @@ const sortedArticles = sortByDate(allArticles);
         class="w-64 h-72 object-cover object-top mx-auto"
       />
     </div>
-    <h2 class="text-2xl mb-8 md:hidden">Hi! I'm Luffy.</h2>
+    <h2 class="text-2xl mb-8 md:hidden">{blogConfig.greeting}</h2>
   </section>
-  <section>
-    <h2 class="text-2xl font-bold mb-6">Latest Posts</h2>
-    <ul class="grid grid-cols-1 gap-6 md:grid-cols-3 items-stretch">
-      {
-        (sortedArticles as MDXInstanceProperty[])
-          .filter((post) => !post.frontmatter.draft)
-          .slice(0, 3)
-          .map(({ frontmatter, url, coverImgSrc }) => (
-            <PostCard
-              frontmatter={frontmatter}
-              url={url || ''}
-              coverImgSrc={coverImgSrc || ''}
-            />
-          ))
-      }
-    </ul>
-  </section>
+  {
+    sortedArticles.length > 0 && (
+      <section>
+        <h2 class="text-2xl font-bold mb-6">Latest Posts</h2>
+        <ul class="grid grid-cols-1 gap-6 md:grid-cols-3 items-stretch">
+          {(sortedArticles as MDXInstanceProperty[])
+            .filter((post) => !post.frontmatter.draft)
+            .slice(0, 3)
+            .map(({ frontmatter, url, coverImgSrc }) => (
+              <PostCard
+                frontmatter={frontmatter}
+                url={url || ''}
+                coverImgSrc={coverImgSrc || ''}
+              />
+            ))}
+        </ul>
+      </section>
+    )
+  }
 </BaseLayout>
 
 <style>

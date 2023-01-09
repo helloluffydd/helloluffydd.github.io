@@ -8,14 +8,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     screens: {
-      sm: '576px',
-      // => @media (min-width: 576px) { ... }
-
-      md: '800px',
-      // => @media (min-width: 800px) { ... }
-
-      lg: '1024px',
-      // => @media (min-width: 1024px) { ... }
+      sm: '576px', // => @media (min-width: 576px) { ... }
+      md: '800px', // => @media (min-width: 800px) { ... }
+      lg: '1024px', // => @media (min-width: 1024px) { ... }
     },
     fontFamily: {
       serif: [
@@ -46,6 +41,9 @@ module.exports = {
               borderRadius: '4px',
               fontWeight: '100',
               fontSize: '0.5rem',
+            },
+            th: {
+              padding: '15px 0',
             },
             'code::before': {
               content: 'none',

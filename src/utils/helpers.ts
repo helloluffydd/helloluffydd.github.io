@@ -32,3 +32,5 @@ export const generateTagsData = (tags: string[]) => {
     slug: generateSlug(t),
   }));
 };
+
+export const generateCopyright = (year: number) => `Copyright © ${year} Luffy`;
