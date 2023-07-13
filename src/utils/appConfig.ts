@@ -1,16 +1,16 @@
 export const blogConfig = {
   title: 'Hello Luffy',
   greeting: "Hi! I'm Luffy.",
-  description: 'Luffy is on the way!',
+  description: 'On my way to somewhere!',
   author: 'Luffy Chen',
   localeRegion: 'zh-tw',
   locale: 'tw',
 };
 
 export const selfIntros = [
-  '從小到大都讀文科，最後成為一名前端工程師。',
+  '從小到大都讀文科，現在是一名前端工程師。',
   '最喜歡的一句話是「相信而堅持，堅持而相信。」',
-  '生活中的深思奇想，希望這裡是它們最後的棲地。',
+  '生活中的深思奇想，這裡是它們最後的棲地。',
 ];
 
 export const navLinks = [
@@ -36,7 +36,7 @@ export const footerLinks = [
   },
   {
     id: 'ig-icon',
-    href: 'https://www.instagram.com/hello.luffy.dd/',
+    href: 'https://www.instagram.com/dada.code.dev/',
     iconName: 'uil:instagram',
   },
   {

@@ -23,7 +23,7 @@ const tagData = generateTagsData(tags);
         <div class="w-5 sm:w-6">
           <Icon name="ic:baseline-edit-calendar" />
         </div>
-        <time datetime={publicDate} class="mr-2">{publicDate}</time>
+        <div class="mr-2">{publicDate}</div>
       </div>
       <div class="flex flex-row flex-wrap justify-start items-center gap-2">
         <div class="w-5 sm:w-6">
@@ -59,6 +59,13 @@ const tagData = generateTagsData(tags);
 
       if (clientHeight > clientWidth) {
         (imgs[i] as Element as HTMLElement).style.width = '60%';
+      }
+
+      if (
+        (imgs[i] as Element).nextElementSibling?.tagName ===
+        'figcaption'.toUpperCase()
+      ) {
+        (imgs[i] as Element as HTMLElement).classList.add('mb-2');
       }
     }
   }
