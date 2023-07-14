@@ -90,10 +90,7 @@ module.exports = {
 			},
 			colors: {
 				white: '#ffffff',
-				// primary: '#10172A',
-        // #09243b
-        // #072641
-				primary: '#182035',
+        primary: '#091825',
 			},
 		},
 	},
